@@ -22,7 +22,7 @@ import com.app.hopet.utilities.CustomListView;
 
 public class NewsFeedBottomNavBarFragment extends Fragment {
     private FirebaseDatabase database;
-    private CustomListView customListView;
+    private CustomListView customListView ;
     private ListView listView;
     private ArrayList<Animal> animals;
 
