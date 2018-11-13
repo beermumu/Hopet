@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name" translatable="false">Hopet</string>
+
+    <string name="name">Name</string>
+    <string name="breed">Breed</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="color">Color</string>
+    <string name="description">Description</string>
+    <string name="Topic">Topic</string>
+    <string name="save">Save</string>
+    <string name="map_text">Map</string>
+    <string name="location">Location</string>
+    <string name="done">Done</string>
+    <string name="post">Post</string>
+    <string name="photo">Photo</string>
+    <string name="photos">Photos</string>
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="take">Take</string>
+    <string name="give">Give</string>
+    <string name="add_location">Add Location</string>
+    <string name="add_plus">+</string>
+
+    <string name="newsFeed">News Feed</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+
+    <string-array name="gender_list">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="breed_list">
+        <item>Bulldog</item>
+        <item>Rottweller</item>
+        <item>Pug</item>
+
+    </string-array>
+
+    <string-array name="age_list">
+        <item>Less than 1</item>
+        <item>1-5</item>
+        <item>6-10</item>
+        <item>11-15</item>
+        <item>16-20</item>
+        <item>More than 21</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment1">Hello blank fragment1</string>
+    <string name="hello_blank_fragment2">Hello blank fragment2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
