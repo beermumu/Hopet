@@ -1,4 +1,4 @@
-package com.app.hopet.utilities;
+package com.app.hopet.Utilities;
 
 import android.annotation.SuppressLint;
 import android.support.design.bottomnavigation.LabelVisibilityMode;

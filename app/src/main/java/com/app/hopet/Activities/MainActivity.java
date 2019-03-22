@@ -14,8 +14,8 @@ import com.app.hopet.Fragments.SearchBottomNavBarFragment;
 import com.app.hopet.Fragments.SettingsBottomNavBarFragment;
 import com.app.hopet.Models.User;
 import com.app.hopet.R;
-import com.app.hopet.utilities.BottomNavigationViewHelper;
-import com.app.hopet.utilities.UserManager;
+import com.app.hopet.Utilities.BottomNavigationViewHelper;
+import com.app.hopet.Utilities.UserManager;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {

@@ -4,6 +4,7 @@ public class Animal {
     private User user;
     private boolean status;
     private String topic;
+    private String type;
     private String breed;
     private String gender;
     private String age;
@@ -14,10 +15,11 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(User user, boolean status, String topic, String breed, String gender, String age, String description, double latitude, double longitude, String photoOne, String photoTwo, String photoThree) {
+    public Animal(User user, boolean status, String topic, String type, String breed, String gender, String age, String description, double latitude, double longitude, String photoOne, String photoTwo, String photoThree) {
         this.user = user;
         this.status = status;
         this.topic = topic;
+        this.type = type;
         this.breed = breed;
         this.gender = gender;
         this.age = age;
@@ -51,6 +53,14 @@ public class Animal {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getBreed() {

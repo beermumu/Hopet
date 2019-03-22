@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.hopet.Models.Animal;
-import com.app.hopet.utilities.UserManager;
+import com.app.hopet.Utilities.UserManager;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,15 +32,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CreatePostActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private EditText topicEditText, descriptionEditText;
     private TextView locationTextView;
-    private Spinner genderSpinner, breedSpinner, ageSpinner;
-    private String selectGenderSpinner, selectBreedSpinner, selectAgeSpinner;
+    private Spinner genderSpinner, breedSpinner, ageSpinner, animalTypeSpinner;
+    private String selectGenderSpinner, selectBreedSpinner, selectAgeSpinner, selectAnimalTypeSpinner;
     private String animalSend, typeSend;
     private double latitude, longitude;
     private ImageView uploadImage1Button, uploadImage2Button, uploadImage3Button;
@@ -55,6 +52,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
         initWidgets();
         initIntent();
+        initAnimalTypeSpinner();
         initBreedSpinner();
         initGenderSpinner();
         initAgeSpinner();
@@ -64,6 +62,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private void initWidgets() {
         breedSpinner = findViewById(R.id.breedSpinner);
+        animalTypeSpinner = findViewById(R.id.animalSpinner);
         genderSpinner = findViewById(R.id.genderSpinner);
         ageSpinner = findViewById(R.id.ageSpinner);
         topicEditText = findViewById(R.id.topicEditText);
@@ -74,26 +73,55 @@ public class CreatePostActivity extends AppCompatActivity {
     private void initIntent() {
         Intent intent = getIntent();
         String send = intent.getStringExtra("sent");
-
-        if (send.equals("takeDog")) {
-            animalSend = "Dog";
+        if (send.equals("take")) {
             typeSend = "Take";
-        } else if (send.equals("takeCat")) {
-            animalSend = "Cat";
-            typeSend = "Take";
-        } else if (send.equals("giveDog")) {
-            animalSend = "Dog";
-            typeSend = "Give";
-        } else if (send.equals("giveCat")) {
-            animalSend = "Cat";
+        } else if (send.equals("give")) {
             typeSend = "Give";
         }
     }
 
+    private void initAnimalTypeSpinner() {
+        final String[] animalList = getResources().getStringArray(R.array.animal_type_list);
+        final ArrayAdapter<String> animalAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, animalList);
+
+        animalSend = "Dog";
+        animalTypeSpinner.setAdapter(animalAdapter);
+        selectAnimalTypeSpinner = animalList[0];
+        animalTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectAnimalTypeSpinner = animalList[position];
+                animalSend = animalList[position];
+                initBreedSpinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
     private void initBreedSpinner() {
-        final String[] breedList = getResources().getStringArray(R.array.breed_list);
+        breedSpinner.setEnabled(true);
+        if (animalSend.equals("Dog")) {
+            initDogBreedSpinner();
+        } else if (animalSend.equals("Cat")) {
+            initCatBreedSpinner();
+        } else if (animalSend.equals("Bird")){
+            initBirdBreedSpinner();
+        } else if (animalSend.equals("Rat")){
+            initRatBreedSpinner();
+        } else if(animalSend.equals("Other")) {
+            breedSpinner.setEnabled(false);
+            selectBreedSpinner = "-";
+        }
+    }
+
+    private void initBirdBreedSpinner() {
+        final String[] breedList = getResources().getStringArray(R.array.breed_bird_list);
         ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, breedList);
+
         breedSpinner.setAdapter(breedAdapter);
         selectBreedSpinner = breedList[0];
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -101,6 +129,64 @@ public class CreatePostActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectGenderSpinner = breedList[position];
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void initRatBreedSpinner() {
+        final String[] breedList = getResources().getStringArray(R.array.breed_rat_list);
+        ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, breedList);
+
+        breedSpinner.setAdapter(breedAdapter);
+        selectBreedSpinner = breedList[0];
+        breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectGenderSpinner = breedList[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void initCatBreedSpinner() {
+        final String[] breedList = getResources().getStringArray(R.array.breed_cat_list);
+        ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, breedList);
+
+        breedSpinner.setAdapter(breedAdapter);
+        selectBreedSpinner = breedList[0];
+        breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectGenderSpinner = breedList[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void initDogBreedSpinner() {
+        final String[] breedList = getResources().getStringArray(R.array.breed_dog_list);
+        ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, breedList);
+
+        breedSpinner.setAdapter(breedAdapter);
+        selectBreedSpinner = breedList[0];
+        breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectGenderSpinner = breedList[position];
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -118,6 +204,7 @@ public class CreatePostActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectGenderSpinner = genderList[position];
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -182,8 +269,8 @@ public class CreatePostActivity extends AppCompatActivity {
 
     public void clickButton(View view) {
         if (view.getId() == R.id.map_button) {
-            Intent intent = new Intent(this , MapsActivity.class);
-            startActivityForResult(intent,1);
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivityForResult(intent, 1);
         }
     }
 
@@ -192,39 +279,39 @@ public class CreatePostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri;
         if (requestCode == 1 && resultCode == this.RESULT_OK) { //from map
-            latitude = data.getDoubleExtra("latitude",0);
-            longitude = data.getDoubleExtra("longitude",0);
+            latitude = data.getDoubleExtra("latitude", 0);
+            longitude = data.getDoubleExtra("longitude", 0);
             String address = data.getStringExtra("address");
             locationTextView.setText(address);
-            Log.i("Back","address: "+address);
-        } else if (requestCode == 2 && resultCode == this.RESULT_OK){ //from photo one
+            Log.i("Back", "address: " + address);
+        } else if (requestCode == 2 && resultCode == this.RESULT_OK) { //from photo one
             try {
                 uri = data.getData();
-                uploadPhoto(uri,"1.jpg");
-            }catch (Exception e){
+                uploadPhoto(uri, "1.jpg");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }  else if (requestCode == 3 && resultCode == this.RESULT_OK){ //from photo two
+        } else if (requestCode == 3 && resultCode == this.RESULT_OK) { //from photo two
             try {
                 uri = data.getData();
-                uploadPhoto(uri,"2.jpg");
-            }catch (Exception e){
+                uploadPhoto(uri, "2.jpg");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }  else if (requestCode == 4 && resultCode == this.RESULT_OK){ //from photo three
+        } else if (requestCode == 4 && resultCode == this.RESULT_OK) { //from photo three
             try {
                 uri = data.getData();
-                uploadPhoto(uri,"3.jpg");
-            }catch (Exception e){
+                uploadPhoto(uri, "3.jpg");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void uploadPhoto(Uri uri, String fileName){
+    public void uploadPhoto(Uri uri, String fileName) {
         final String fileImageName = fileName;
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-        final StorageReference storageReference = firebaseStorage.getReference().child("Post/"+firebaseKey+"/"+fileImageName);
+        final StorageReference storageReference = firebaseStorage.getReference().child("Post/" + firebaseKey + "/" + fileImageName);
         storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -233,13 +320,13 @@ public class CreatePostActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         if (fileImageName.equals("1.jpg")) {
                             uploadImage1URL = uri.toString();
-                            downloadPhoto(uploadImage1URL,fileImageName);
+                            downloadPhoto(uploadImage1URL, fileImageName);
                         } else if (fileImageName.equals("2.jpg")) {
                             uploadImage2URL = uri.toString();
-                            downloadPhoto(uploadImage2URL,fileImageName);
+                            downloadPhoto(uploadImage2URL, fileImageName);
                         } else if (fileImageName.equals("3.jpg")) {
                             uploadImage3URL = uri.toString();
-                            downloadPhoto(uploadImage3URL,fileImageName);
+                            downloadPhoto(uploadImage3URL, fileImageName);
                         }
 
                     }
@@ -253,7 +340,7 @@ public class CreatePostActivity extends AppCompatActivity {
         });
     }
 
-    public void downloadPhoto(String url, String fileName){
+    public void downloadPhoto(String url, String fileName) {
         if (fileName.equals("1.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto1Button);
             Glide.with(this).load(url).into(imageView);
@@ -280,9 +367,9 @@ public class CreatePostActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.post_done) {
             if (!topicEditText.getText().toString().equals("")) {
-                Animal animal = new Animal(UserManager.getUser(),true, topicEditText.getText().toString(), selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(),latitude,longitude,uploadImage1URL ,uploadImage2URL ,uploadImage3URL);
-                databaseReference.child(typeSend).child(animalSend).child(firebaseKey).setValue(animal);
-                Toast.makeText(CreatePostActivity.this,"Post Created",Toast.LENGTH_LONG).show();
+                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
+                databaseReference.child(typeSend).child(firebaseKey).setValue(animal);
+                Toast.makeText(CreatePostActivity.this, "Post Created", Toast.LENGTH_LONG).show();
             }
         }
         finish();

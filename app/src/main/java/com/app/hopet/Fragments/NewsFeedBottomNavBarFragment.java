@@ -18,14 +18,14 @@ import java.util.ArrayList;
 
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
-import com.app.hopet.utilities.CustomListView;
+import com.app.hopet.Utilities.CustomListView;
 
 public class NewsFeedBottomNavBarFragment extends Fragment {
     private FirebaseDatabase database;
     private CustomListView customListView ;
     private ListView listView;
     private ArrayList<Animal> animals;
-
+    private ArrayList<String> key;
     public NewsFeedBottomNavBarFragment() {
         // Required empty public constructor
     }
@@ -35,36 +35,28 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nav_news_feed, container, false);
 
         animals = new ArrayList<>();
-
-        customListView = new CustomListView(getContext(),0,animals);
-
+        key = new ArrayList<>();
+        customListView = new CustomListView(getContext(),0,animals,key);
         database = FirebaseDatabase.getInstance();
-
-        initTakeDogFirebase();
-        initGiveDogFirebase();
-        initTakeCatFirebase();
-        initGiveCatFirebase();
-
+        initTakeFirebase();
+        initGiveFirebase();
         listView = view.findViewById(R.id.newsfeed_listview);
         listView.setAdapter(customListView);
-
 
         return view;
     }
 
-    private void initTakeDogFirebase() {
-        DatabaseReference databaseReference = database.getReference().child("Post").child("Take").child("Dog");
+    private void initTakeFirebase() {
+        final DatabaseReference databaseReference = database.getReference().child("Post").child("Take");
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("poom","K: "+addAnimal.getTopic());
-                if (addAnimal != null) {
-                    animals.add(addAnimal);
-                    customListView.notifyDataSetChanged();
-                }
-
+                Log.i("puu","K: "+addAnimal.getTopic());
+                animals.add(addAnimal);
+                key.add(dataSnapshot.getKey());
+                customListView.notifyDataSetChanged();
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -81,77 +73,17 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
         });
     }
 
-    private void initGiveDogFirebase() {
-        DatabaseReference databaseReference = database.getReference().child("Post").child("Give").child("Dog");
+    private void initGiveFirebase() {
+        final DatabaseReference databaseReference = database.getReference().child("Post").child("Give");
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("poom","K: "+addAnimal.getTopic());
-                if (addAnimal != null) {
-                    animals.add(addAnimal);
-                    customListView.notifyDataSetChanged();
-                }
-
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-
-    private void initTakeCatFirebase() {
-        DatabaseReference databaseReference = database.getReference().child("Post").child("Take").child("Cat");
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("poom","K: "+addAnimal.getTopic());
-                if (addAnimal != null) {
-                    animals.add(addAnimal);
-                    customListView.notifyDataSetChanged();
-                }
-
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-
-    private void initGiveCatFirebase() {
-        DatabaseReference databaseReference = database.getReference().child("Post").child("Give").child("Cat");
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("poom","K: "+addAnimal.getTopic());
-                if (addAnimal != null) {
-                    animals.add(addAnimal);
-                    customListView.notifyDataSetChanged();
-                }
-
+                Log.i("puu","K: "+addAnimal.getTopic());
+                animals.add(addAnimal);
+                key.add(dataSnapshot.getKey());
+                customListView.notifyDataSetChanged();
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {

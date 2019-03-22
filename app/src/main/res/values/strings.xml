@@ -21,6 +21,7 @@
     <string name="give">Give</string>
     <string name="add_location">Add Location</string>
     <string name="add_plus">+</string>
+    <string name="animal_type">Animal Type</string>
 
     <string name="newsFeed">News Feed</string>
     <string name="search">Search</string>
@@ -31,20 +32,74 @@
         <item>Female</item>
     </string-array>
 
-    <string-array name="breed_list">
-        <item>Bulldog</item>
-        <item>Rottweller</item>
+    <string-array name="breed_dog_list">
+        <item>Labrador</item>
+        <item>Golden</item>
+        <item>German Shepherd</item>
+        <item>Bulldogs</item>
+        <item>Beagles</item>
+        <item>Poodles</item>
         <item>Pug</item>
+        <item>Shih Tzu</item>
+        <item>Corgis</item>
+        <item>Siberian Huskies</item>
+        <item>Other</item>
+    </string-array>
 
+    <string-array name="breed_cat_list">
+        <item>Siamese</item>
+        <item>Persian</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Bengal</item>
+        <item>Abyssinian</item>
+        <item>Birman</item>
+        <item>Oriental Shorthair</item>
+        <item>Sphynx</item>
+        <item>Himalayan</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="breed_bird_list">
+        <item>Budgies</item>
+        <item>Cockatiels</item>
+        <item>Finches and Canaries</item>
+        <item>Parrot</item>
+        <item>Lovebirds</item>
+        <item>African Greys</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="breed_rat_list">
+        <item>Self</item>
+        <item>Berkshire</item>
+        <item>Blazed</item>
+        <item>Capped</item>
+        <item>Hooded</item>
+        <item>Irish</item>
+        <item>Masked</item>
+        <item>Husky</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="age_list">
-        <item>Less than 1</item>
-        <item>1-5</item>
-        <item>6-10</item>
-        <item>11-15</item>
-        <item>16-20</item>
-        <item>More than 21</item>
+        <item>1-3 Month</item>
+        <item>4-6 Month</item>
+        <item>7-9 Month</item>
+        <item>10-12 Month</item>
+        <item>1-3 Year</item>
+        <item>4-6 Year</item>
+        <item>7-9 Year</item>
+        <item>10-12 Year</item>
+        <item>More than 12</item>
+    </string-array>
+
+    <string-array name="animal_type_list">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Bird</item>
+        <item>Rat</item>
+        <item>Other</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

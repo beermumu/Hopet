@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.app.hopet.Activities.AnimalsActivity;
+import com.app.hopet.Activities.CreatePostActivity;
 import com.app.hopet.R;
 
 
@@ -74,7 +74,7 @@ public class PostBottomNavBarFragment extends Fragment {
         giveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AnimalsActivity.class);
+                Intent intent = new Intent(getActivity(),CreatePostActivity.class);
                 intent.putExtra("sent", "give");
                 startActivityForResult(intent,0);
             }
@@ -83,7 +83,7 @@ public class PostBottomNavBarFragment extends Fragment {
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AnimalsActivity.class);
+                Intent intent = new Intent(getActivity(),CreatePostActivity.class);
                 intent.putExtra("sent", "take");
                 startActivityForResult(intent,0);
             }

@@ -1,4 +1,4 @@
-package com.app.hopet.utilities;
+package com.app.hopet.Utilities;
 
 import com.app.hopet.Models.User;
 
