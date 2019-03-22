@@ -36,7 +36,6 @@ import java.util.Map;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private LatLng tempLatLng = new LatLng(0, 0);
-    private LatLng currentLatLng = new LatLng(1,2) ;
     private double latitude, longitude;
     private Bitmap mapPreview;
 

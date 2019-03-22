@@ -3,6 +3,7 @@ package com.app.hopet.Utilities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class CustomListView extends ArrayAdapter<Animal> {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_row, null);
-
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -78,6 +78,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
             name = convertview.findViewById(R.id.userNameTextView);
             description = convertview.findViewById(R.id.descriptionTextView);
             imageView1 = convertview.findViewById(R.id.postImageView);
+//            Log.i("kakak", "Adding Listener Home");
         }
     }
 

@@ -22,6 +22,9 @@
     <string name="add_location">Add Location</string>
     <string name="add_plus">+</string>
     <string name="animal_type">Animal Type</string>
+    <string name="navigator">Navigator</string>
+    <string name="comment">Comment</string>
+    <string name="sent">Sent</string>
 
     <string name="newsFeed">News Feed</string>
     <string name="search">Search</string>
