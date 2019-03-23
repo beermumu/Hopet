@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.hopet.Models.Animal;
+import com.app.hopet.Utilities.DateTime;
 import com.app.hopet.Utilities.UserManager;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -127,7 +128,7 @@ public class CreatePostActivity extends AppCompatActivity {
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectGenderSpinner = breedList[position];
+                selectBreedSpinner = breedList[position];
             }
 
             @Override
@@ -146,7 +147,7 @@ public class CreatePostActivity extends AppCompatActivity {
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectGenderSpinner = breedList[position];
+                selectBreedSpinner = breedList[position];
             }
 
             @Override
@@ -165,7 +166,7 @@ public class CreatePostActivity extends AppCompatActivity {
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectGenderSpinner = breedList[position];
+                selectBreedSpinner = breedList[position];
             }
 
             @Override
@@ -184,7 +185,7 @@ public class CreatePostActivity extends AppCompatActivity {
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectGenderSpinner = breedList[position];
+                selectBreedSpinner = breedList[position];
             }
 
             @Override
@@ -367,8 +368,9 @@ public class CreatePostActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.post_done) {
             if (!topicEditText.getText().toString().equals("")) {
-                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
-                databaseReference.child(typeSend).child(firebaseKey).setValue(animal);
+                Log.i("kikapu",selectBreedSpinner);
+                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
+                databaseReference.child("Data").child(firebaseKey).setValue(animal);
                 Toast.makeText(CreatePostActivity.this, "Post Created", Toast.LENGTH_LONG).show();
             }
         }

@@ -5,30 +5,50 @@ public class Animal {
     private boolean status;
     private String topic;
     private String type;
+    private String topicType;
     private String breed;
     private String gender;
     private String age;
     private String description;
+    private String dateTime;
     private double latitude, longitude;
     private String photoOne, photoTwo, photoThree;
 
     public Animal() {
     }
 
-    public Animal(User user, boolean status, String topic, String type, String breed, String gender, String age, String description, double latitude, double longitude, String photoOne, String photoTwo, String photoThree) {
+    public Animal(User user, boolean status, String topic, String type, String topicType ,String breed, String gender, String age, String description, String dateTime, double latitude, double longitude, String photoOne, String photoTwo, String photoThree) {
         this.user = user;
         this.status = status;
         this.topic = topic;
         this.type = type;
+        this.topicType = topicType;
         this.breed = breed;
         this.gender = gender;
         this.age = age;
         this.description = description;
+        this.dateTime = dateTime;
         this.latitude = latitude;
         this.longitude = longitude;
         this.photoOne = photoOne;
         this.photoTwo = photoTwo;
         this.photoThree = photoThree;
+    }
+
+    public String getTopicType() {
+        return topicType;
+    }
+
+    public void setTopicType(String topicType) {
+        this.topicType = topicType;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public User getUser() {

@@ -1,6 +1,7 @@
 package com.app.hopet.Fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +16,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.TreeMap;
 
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.CustomListView;
+import com.google.firebase.database.ValueEventListener;
 
 public class NewsFeedBottomNavBarFragment extends Fragment {
     private FirebaseDatabase database;
@@ -33,70 +38,37 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nav_news_feed, container, false);
-
         animals = new ArrayList<>();
         key = new ArrayList<>();
         customListView = new CustomListView(getContext(),0,animals,key);
         database = FirebaseDatabase.getInstance();
-        initTakeFirebase();
-        initGiveFirebase();
+        initDataFirebase();
         listView = view.findViewById(R.id.newsfeed_listview);
         listView.setAdapter(customListView);
-
         return view;
     }
 
-    private void initTakeFirebase() {
-        final DatabaseReference databaseReference = database.getReference().child("Post").child("Take");
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
+    private void initDataFirebase() {
+        final DatabaseReference databaseReference = database.getReference().child("Post").child("Data");
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("puu","K: "+addAnimal.getTopic());
-                animals.add(addAnimal);
-                key.add(dataSnapshot.getKey());
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    Animal addAnimal = dataSnapshot1.getValue(Animal.class);
+                    Log.i("puu","K: "+addAnimal.getTopic());
+                    animals.add(addAnimal);
+                    key.add(dataSnapshot1.getKey());
+                }
+                Collections.reverse(animals);
+                Collections.reverse(key);
                 customListView.notifyDataSetChanged();
             }
+
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
 
-    private void initGiveFirebase() {
-        final DatabaseReference databaseReference = database.getReference().child("Post").child("Give");
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Animal addAnimal = dataSnapshot.getValue(Animal.class);
-                Log.i("puu","K: "+addAnimal.getTopic());
-                animals.add(addAnimal);
-                key.add(dataSnapshot.getKey());
-                customListView.notifyDataSetChanged();
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
 }

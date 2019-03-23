@@ -25,10 +25,21 @@
     <string name="navigator">Navigator</string>
     <string name="comment">Comment</string>
     <string name="sent">Sent</string>
+    <string name="filter_search_topic">Filter Search Topic</string>
+    <string name="filter_search_data">Filter Search</string>
+    <string name="breed_search">Breed Search</string>
 
     <string name="newsFeed">News Feed</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
+
+    <string-array name="function_list">
+        <item>None</item>
+        <item>TopicType</item>
+        <item>PetType</item>
+        <item>Gender</item>
+        <item>Age</item>
+    </string-array>
 
     <string-array name="gender_list">
         <item>Male</item>
@@ -36,6 +47,21 @@
     </string-array>
 
     <string-array name="breed_dog_list">
+        <item>Labrador</item>
+        <item>Golden</item>
+        <item>German Shepherd</item>
+        <item>Bulldogs</item>
+        <item>Beagles</item>
+        <item>Poodles</item>
+        <item>Pug</item>
+        <item>Shih Tzu</item>
+        <item>Corgis</item>
+        <item>Siberian Huskies</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="search_breed_dog_list">
+        <item>None</item>
         <item>Labrador</item>
         <item>Golden</item>
         <item>German Shepherd</item>
@@ -63,6 +89,21 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="search_breed_cat_list">
+        <item>None</item>
+        <item>Siamese</item>
+        <item>Persian</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Bengal</item>
+        <item>Abyssinian</item>
+        <item>Birman</item>
+        <item>Oriental Shorthair</item>
+        <item>Sphynx</item>
+        <item>Himalayan</item>
+        <item>Other</item>
+    </string-array>
+
     <string-array name="breed_bird_list">
         <item>Budgies</item>
         <item>Cockatiels</item>
@@ -73,7 +114,31 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="search_breed_bird_list">
+        <item>None</item>
+        <item>Budgies</item>
+        <item>Cockatiels</item>
+        <item>Finches and Canaries</item>
+        <item>Parrot</item>
+        <item>Lovebirds</item>
+        <item>African Greys</item>
+        <item>Other</item>
+    </string-array>
+
     <string-array name="breed_rat_list">
+        <item>Self</item>
+        <item>Berkshire</item>
+        <item>Blazed</item>
+        <item>Capped</item>
+        <item>Hooded</item>
+        <item>Irish</item>
+        <item>Masked</item>
+        <item>Husky</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="search_breed_rat_list">
+        <item>None</item>
         <item>Self</item>
         <item>Berkshire</item>
         <item>Blazed</item>
@@ -103,6 +168,11 @@
         <item>Bird</item>
         <item>Rat</item>
         <item>Other</item>
+    </string-array>>
+
+    <string-array name="topic_type_list">
+        <item>Give</item>
+        <item>Take</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

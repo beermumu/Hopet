@@ -70,35 +70,7 @@ public class PostActivity extends AppCompatActivity {
 
     private void initData() {
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("Post").child("Give");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    if (dataSnapshot1.getKey().equals(firebaseKey)) {
-                        Animal animal = dataSnapshot1.getValue(Animal.class);
-                        topicText.setText(animal.getTopic());
-                        animalTypeText.setText(animal.getType());
-                        breedText.setText(animal.getBreed());
-                        genderText.setText(animal.getGender());
-                        ageText.setText(animal.getAge());
-                        descriptionText.setText(animal.getDescription());
-                        latitude = animal.getLatitude();
-                        longitude = animal.getLongitude();
-                        Glide.with(PostActivity.this).load(animal.getPhotoOne()).into((ImageView) findViewById(R.id.showImage));
-                        Glide.with(PostActivity.this).load(animal.getPhotoTwo()).into((ImageView) findViewById(R.id.showImage2));
-                        Glide.with(PostActivity.this).load(animal.getPhotoThree()).into((ImageView) findViewById(R.id.showImage3));
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseReference = database.getReference().child("Post").child("Take");
+        databaseReference = database.getReference().child("Post").child("Data");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

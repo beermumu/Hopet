@@ -22,7 +22,8 @@ import com.bumptech.glide.Glide;
 public class CustomListView extends ArrayAdapter<Animal> {
 
     private List<String> firebaseKey;
-    public CustomListView(Context context, int resource, List<Animal> objects,List<String> key) {
+
+    public CustomListView(Context context, int resource, List<Animal> objects, List<String> key) {
         super(context, R.layout.item_row, objects);
         this.firebaseKey = key;
     }
@@ -41,6 +42,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
         viewHolder.topic.setText(animal.getTopic());
         viewHolder.name.setText("Post By : " + animal.getUser().getFirstName() + " " + animal.getUser().getLastName());
         viewHolder.description.setText("Description : " + animal.getDescription());
+        viewHolder.dateTime.setText("Time : " + animal.getDateTime());
         Glide.with(getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
 
 
@@ -51,7 +53,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PostActivity.class);
-                intent.putExtra("key",firebaseKey.get(position));
+                intent.putExtra("key", firebaseKey.get(position));
                 getContext().startActivity(intent);
             }
         });
@@ -60,7 +62,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, animal.getTopic()+"\n"+animal.getBreed()+"\n"+animal.getAge()+"\n"+animal.getDescription()+"\n"+"Contact in Hopet App");
+                intent.putExtra(Intent.EXTRA_TEXT, animal.getTopic() + "\n" + animal.getBreed() + "\n" + animal.getAge() + "\n" + animal.getDescription() + "\n" + "Contact in Hopet App");
                 intent.setType("text/plain");
                 getContext().startActivity(intent);
             }
@@ -70,7 +72,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
     }
 
     public class ViewHolder {
-        public TextView topic, name, description;
+        public TextView topic, name, description, dateTime;
         public ImageView imageView1;
 
         public ViewHolder(View convertview) {
@@ -78,6 +80,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
             name = convertview.findViewById(R.id.userNameTextView);
             description = convertview.findViewById(R.id.descriptionTextView);
             imageView1 = convertview.findViewById(R.id.postImageView);
+            dateTime = convertview.findViewById(R.id.timeTextView);
 //            Log.i("kakak", "Adding Listener Home");
         }
     }
