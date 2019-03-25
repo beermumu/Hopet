@@ -368,36 +368,48 @@ public class SearchBottomNavBarFragment extends Fragment {
                         if (!selectFunction.equals("None")){
                             if (selectFunction.equals("TopicType")){
                                 if (addAnimal.getTopicType().equals(selectSearch)) {
-                                    animals.add(addAnimal);
-                                    key.add(dataSnapshot1.getKey());
+                                    if (addAnimal.isStatus()){
+                                        animals.add(addAnimal);
+                                        key.add(dataSnapshot1.getKey());
+                                    }
                                 }
                             }if (selectFunction.equals("Gender")){
                                 if (addAnimal.getGender().equals(selectSearch)) {
-                                    animals.add(addAnimal);
-                                    key.add(dataSnapshot1.getKey());
+                                    if (addAnimal.isStatus()){
+                                        animals.add(addAnimal);
+                                        key.add(dataSnapshot1.getKey());
+                                    }
                                 }
                             }if (selectFunction.equals("Age")){
                                 if (addAnimal.getAge().equals(selectSearch)) {
-                                    animals.add(addAnimal);
-                                    key.add(dataSnapshot1.getKey());
+                                    if (addAnimal.isStatus()){
+                                        animals.add(addAnimal);
+                                        key.add(dataSnapshot1.getKey());
+                                    }
                                 }
                             }if (selectFunction.equals("PetType")){
                                 if (addAnimal.getType().equals(selectSearch)) {
                                     if(!selectBreed.equals("None")){
                                         if (addAnimal.getBreed().equals(selectBreed)){
+                                            if (addAnimal.isStatus()){
+                                                animals.add(addAnimal);
+                                                key.add(dataSnapshot1.getKey());
+                                            }
+                                        }
+                                    }else {
+                                        if (addAnimal.isStatus()){
                                             animals.add(addAnimal);
                                             key.add(dataSnapshot1.getKey());
                                         }
-                                    }else {
-                                        animals.add(addAnimal);
-                                        key.add(dataSnapshot1.getKey());
                                     }
 
                                 }
                             }
                         }else {
-                            animals.add(addAnimal);
-                            key.add(dataSnapshot1.getKey());
+                            if (addAnimal.isStatus()){
+                                animals.add(addAnimal);
+                                key.add(dataSnapshot1.getKey());
+                            }
                         }
                     }
                     Collections.reverse(animals);

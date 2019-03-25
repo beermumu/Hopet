@@ -55,9 +55,11 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Animal addAnimal = dataSnapshot1.getValue(Animal.class);
-                    Log.i("puu","K: "+addAnimal.getTopic());
-                    animals.add(addAnimal);
-                    key.add(dataSnapshot1.getKey());
+                    if (addAnimal.isStatus()){
+                        Log.i("puu","K: "+addAnimal.getTopic());
+                        animals.add(addAnimal);
+                        key.add(dataSnapshot1.getKey());
+                    }
                 }
                 Collections.reverse(animals);
                 Collections.reverse(key);
