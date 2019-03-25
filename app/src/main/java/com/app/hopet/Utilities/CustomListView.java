@@ -40,7 +40,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
         }
         final Animal animal = getItem(position);
         viewHolder.topic.setText(animal.getTopic());
-        viewHolder.name.setText("Post By : " + animal.getUser().getFirstName() + " " + animal.getUser().getLastName());
+        viewHolder.name.setText("Post By : " + animal.getUser().getName());
         viewHolder.description.setText("Description : " + animal.getDescription());
         viewHolder.dateTime.setText("Time : " + animal.getDateTime());
         Glide.with(getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);

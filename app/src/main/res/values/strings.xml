@@ -32,6 +32,12 @@
     <string name="newsFeed">News Feed</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="your_topic">Your Topic</string>
+
+    <string name="facebook_app_id">502303846841532</string>
+    <string name="fb_login_protocol_scheme">fb502303846841532</string>
+
 
     <string-array name="function_list">
         <item>None</item>

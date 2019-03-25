@@ -1,11 +1,13 @@
 package com.app.hopet.Activities;
 
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.app.hopet.Fragments.NewsFeedBottomNavBarFragment;
@@ -16,6 +18,8 @@ import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.BottomNavigationViewHelper;
 import com.app.hopet.Utilities.UserManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -23,14 +27,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private PostBottomNavBarFragment postBottomNavBarFragment;
     private SearchBottomNavBarFragment searchBottomNavBarFragment;
     private SettingsBottomNavBarFragment settingsBottomNavBarFragment;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //to Main
         initBottomNavigationView();
-
-        new UserManager(new User("Beer","Komenkul","1","1","0859791039","profile.jpg"));
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        Log.i("chocobo",firebaseUser.getPhotoUrl()+"");
+        new UserManager(new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),firebaseUser.getPhotoUrl()+""));
     }
 
     private void initBottomNavigationView() {
