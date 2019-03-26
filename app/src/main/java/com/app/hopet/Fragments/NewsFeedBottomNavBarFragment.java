@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.app.hopet.Models.User;
+import com.app.hopet.Utilities.UserManager;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,12 +32,19 @@ import com.app.hopet.R;
 import com.app.hopet.Utilities.CustomListView;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 public class NewsFeedBottomNavBarFragment extends Fragment {
     private FirebaseDatabase database;
     private CustomListView customListView ;
     private ListView listView;
     private ArrayList<Animal> animals;
     private ArrayList<String> key;
+
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth mAuth;
+    private String url;
+
     public NewsFeedBottomNavBarFragment() {
         // Required empty public constructor
     }
@@ -45,6 +59,28 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
         initDataFirebase();
         listView = view.findViewById(R.id.newsfeed_listview);
         listView.setAdapter(customListView);
+
+        //add user and profile pic
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "picture.type(large)");
+        GraphRequest request = GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            url = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                            new UserManager(new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),url));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        request.setParameters(parameters);
+        request.executeAsync();
+
         return view;
     }
 

@@ -44,10 +44,11 @@ public class CustomListView extends ArrayAdapter<Animal> {
         viewHolder.description.setText("Description : " + animal.getDescription());
         viewHolder.dateTime.setText("Time : " + animal.getDateTime());
         Glide.with(getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
+        Glide.with(getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
 
 
         //Comment and Share Button
-        final Button commentBtn = convertView.findViewById(R.id.commentPostButton);
+        Button commentBtn = convertView.findViewById(R.id.commentPostButton);
         Button shareBtn = convertView.findViewById(R.id.sharedPostButton);
         commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +74,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
 
     public class ViewHolder {
         public TextView topic, name, description, dateTime;
-        public ImageView imageView1;
+        public ImageView imageView1 , profilePic;
 
         public ViewHolder(View convertview) {
             topic = convertview.findViewById(R.id.topicTextView);
@@ -81,6 +82,8 @@ public class CustomListView extends ArrayAdapter<Animal> {
             description = convertview.findViewById(R.id.descriptionTextView);
             imageView1 = convertview.findViewById(R.id.postImageView);
             dateTime = convertview.findViewById(R.id.timeTextView);
+            profilePic = convertview.findViewById(R.id.userPhotoImageView);
+
 //            Log.i("kakak", "Adding Listener Home");
         }
     }

@@ -1,11 +1,13 @@
 package com.app.hopet.Activities;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,50 +22,50 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.hopet.Models.Animal;
+import com.app.hopet.R;
 import com.app.hopet.Utilities.DateTime;
-import com.app.hopet.Utilities.UserManager;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import com.app.hopet.R;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
-public class CreatePostActivity extends AppCompatActivity {
+
+public class TopicActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+    private String firebaseKey;
+
     private EditText topicEditText, descriptionEditText;
     private TextView locationTextView;
     private Spinner genderSpinner, breedSpinner, ageSpinner, animalTypeSpinner;
-    private String selectGenderSpinner, selectBreedSpinner, selectAgeSpinner, selectAnimalTypeSpinner;
-    private String animalSend, typeSend;
-    private double latitude, longitude;
     private ImageView uploadImage1Button, uploadImage2Button, uploadImage3Button;
-    private String uploadImage1URL, uploadImage2URL, uploadImage3URL;
-    private String firebaseKey;
 
+
+    private String selectGenderSpinner, selectBreedSpinner, selectAgeSpinner, selectAnimalTypeSpinner ,typeSend,selectDesc,selectTopic;
+    private double latitude, longitude;
+    private String uploadImage1URL, uploadImage2URL, uploadImage3URL;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Create a post");
+        Intent intent = getIntent();
+        firebaseKey = intent.getStringExtra("key");
         setContentView(R.layout.activity_create_post);
 
-
-
         initWidgets();
-        initIntent();
-        initAnimalTypeSpinner();
-        initBreedSpinner();
-        initGenderSpinner();
-        initAgeSpinner();
-        initFirebase();
-        initUploadImages();
+        getBaseData();
 
     }
 
@@ -77,28 +79,82 @@ public class CreatePostActivity extends AppCompatActivity {
         locationTextView = findViewById(R.id.locationTextView);
     }
 
-    private void initIntent() {
-        Intent intent = getIntent();
-        String send = intent.getStringExtra("sent");
-        if (send.equals("take")) {
-            typeSend = "Take";
-        } else if (send.equals("give")) {
-            typeSend = "Give";
+    private void getBaseData() {
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("Post").child("Data");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    if (dataSnapshot1.getKey().equals(firebaseKey)) {
+                        Animal animal = dataSnapshot1.getValue(Animal.class);
+                        topicEditText.setText(animal.getTopic());
+                        selectTopic = topicEditText.getText().toString();
+                        selectAnimalTypeSpinner = animal.getType();
+                        selectBreedSpinner = animal.getBreed();
+                        selectGenderSpinner = animal.getGender();
+                        selectAgeSpinner = animal.getAge();
+                        descriptionEditText.setText(animal.getDescription());
+                        selectDesc = descriptionEditText.getText().toString();
+                        latitude = animal.getLatitude();
+                        longitude = animal.getLongitude();
+                        typeSend = animal.getTopicType();
+                        Geocoder geocoder;
+                        List<Address> addresses;
+                        geocoder = new Geocoder(TopicActivity.this, Locale.getDefault());
+
+                        try {
+                            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                            locationTextView.setText(addresses.get(0).getAddressLine(0)+addresses.get(0).getLocality()+addresses.get(0).getAdminArea()+addresses.get(0).getCountryName()+addresses.get(0).getPostalCode()+addresses.get(0).getPostalCode());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        Glide.with(getApplicationContext()).load(animal.getPhotoOne()).into((ImageView) findViewById(R.id.uploadPhoto1Button));
+                        Glide.with(getApplicationContext()).load(animal.getPhotoTwo()).into((ImageView) findViewById(R.id.uploadPhoto2Button));
+                        Glide.with(getApplicationContext()).load(animal.getPhotoThree()).into((ImageView) findViewById(R.id.uploadPhoto3Button));
+
+                        uploadImage1URL = animal.getPhotoOne();
+                        uploadImage2URL = animal.getPhotoTwo();
+                        uploadImage3URL = animal.getPhotoThree();
+
+                        initAnimalTypeSpinner();
+                        initGenderSpinner();
+                        initAgeSpinner();
+                        initUploadImages();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+    }
+
+    private int getIndexList(String search, String[] list) {
+        int i;
+        for (i = 0; i < list.length; i++) {
+            if (search.equals(list[i])) {
+                return i;
+            }
         }
+        return -1;
     }
 
     private void initAnimalTypeSpinner() {
         final String[] animalList = getResources().getStringArray(R.array.animal_type_list);
         final ArrayAdapter<String> animalAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, animalList);
 
-        animalSend = "Dog";
+
         animalTypeSpinner.setAdapter(animalAdapter);
-        selectAnimalTypeSpinner = animalList[0];
+        animalTypeSpinner.setSelection(getIndexList(selectAnimalTypeSpinner,animalList));
         animalTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectAnimalTypeSpinner = animalList[position];
-                animalSend = animalList[position];
                 initBreedSpinner();
             }
 
@@ -110,15 +166,15 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private void initBreedSpinner() {
         breedSpinner.setEnabled(true);
-        if (animalSend.equals("Dog")) {
+        if (selectAnimalTypeSpinner.equals("Dog")) {
             initDogBreedSpinner();
-        } else if (animalSend.equals("Cat")) {
+        } else if (selectAnimalTypeSpinner.equals("Cat")) {
             initCatBreedSpinner();
-        } else if (animalSend.equals("Bird")){
+        } else if (selectAnimalTypeSpinner.equals("Bird")) {
             initBirdBreedSpinner();
-        } else if (animalSend.equals("Rat")){
+        } else if (selectAnimalTypeSpinner.equals("Rat")) {
             initRatBreedSpinner();
-        } else if(animalSend.equals("Other")) {
+        } else if (selectAnimalTypeSpinner.equals("Other")) {
             breedSpinner.setEnabled(false);
             selectBreedSpinner = "-";
         }
@@ -130,7 +186,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, breedList);
 
         breedSpinner.setAdapter(breedAdapter);
-        selectBreedSpinner = breedList[0];
+        breedSpinner.setSelection(getIndexList(selectBreedSpinner,breedList));
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -149,7 +205,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, breedList);
 
         breedSpinner.setAdapter(breedAdapter);
-        selectBreedSpinner = breedList[0];
+        breedSpinner.setSelection(getIndexList(selectBreedSpinner,breedList));
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -168,7 +224,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, breedList);
 
         breedSpinner.setAdapter(breedAdapter);
-        selectBreedSpinner = breedList[0];
+        breedSpinner.setSelection(getIndexList(selectBreedSpinner,breedList));
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -187,7 +243,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, breedList);
 
         breedSpinner.setAdapter(breedAdapter);
-        selectBreedSpinner = breedList[0];
+        breedSpinner.setSelection(getIndexList(selectBreedSpinner,breedList));
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -205,7 +261,7 @@ public class CreatePostActivity extends AppCompatActivity {
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, genderList);
         genderSpinner.setAdapter(genderAdapter);
-        selectGenderSpinner = genderList[0];
+        genderSpinner.setSelection(getIndexList(selectGenderSpinner,genderList));
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -223,7 +279,7 @@ public class CreatePostActivity extends AppCompatActivity {
         ArrayAdapter<String> ageAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, ageList);
         ageSpinner.setAdapter(ageAdapter);
-        selectAgeSpinner = ageList[0];
+        ageSpinner.setSelection(getIndexList(selectAgeSpinner,ageList));
         ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -234,12 +290,6 @@ public class CreatePostActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-    }
-
-    private void initFirebase() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Post");
-        firebaseKey = databaseReference.push().getKey();
     }
 
     private void initUploadImages() {
@@ -361,23 +411,44 @@ public class CreatePostActivity extends AppCompatActivity {
 
     }
 
+    public void changeStatus(String firebaseKey){
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("Post").child("Data");
+        databaseReference.child(firebaseKey).child("status").setValue(false);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.post_menu, menu);
+        inflater.inflate(R.menu.save_menu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.post_done) {
+        if (id == R.id.save_done) {
             if (!topicEditText.getText().toString().equals("")) {
-                Log.i("kikapu",selectBreedSpinner);
-                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
-                databaseReference.child("Data").child(firebaseKey).setValue(animal);
-                Toast.makeText(CreatePostActivity.this, "Post Created", Toast.LENGTH_LONG).show();
+//                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
+                databaseReference.child(firebaseKey).child("age").setValue(selectAgeSpinner);
+                databaseReference.child(firebaseKey).child("breed").setValue(selectBreedSpinner);
+                databaseReference.child(firebaseKey).child("dateTime").setValue(DateTime.getDate());
+                databaseReference.child(firebaseKey).child("gender").setValue(selectGenderSpinner);
+                databaseReference.child(firebaseKey).child("type").setValue(selectAnimalTypeSpinner);
+                databaseReference.child(firebaseKey).child("latitude").setValue(latitude);
+                databaseReference.child(firebaseKey).child("longitude").setValue(longitude);
+                databaseReference.child(firebaseKey).child("status").setValue(true);
+                databaseReference.child(firebaseKey).child("description").setValue(descriptionEditText.getText().toString());
+                databaseReference.child(firebaseKey).child("topic").setValue("["+ typeSend + "]"+ topicEditText.getText().toString());
+
+                databaseReference.child(firebaseKey).child("photoOne").setValue(uploadImage1URL);
+                databaseReference.child(firebaseKey).child("photoTwo").setValue(uploadImage2URL);
+                databaseReference.child(firebaseKey).child("photoThree").setValue(uploadImage3URL);
+
+
+                Toast.makeText(TopicActivity.this, "Post Edited", Toast.LENGTH_LONG).show();
             }
         }
         finish();
@@ -386,10 +457,5 @@ public class CreatePostActivity extends AppCompatActivity {
         startActivity(intent);
         return true;
     }
-
-
 }
 
-//                uri = data.getData();
-//                Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uri));
-//                imageView.setImageBitmap(bitmap);

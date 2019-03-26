@@ -110,8 +110,6 @@ public class PostActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.comment_recycle_view);
         Log.i("kakak","POOM "+recyclerView);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(PostActivity.this));
-//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(PostActivity.this));
 
         commentReference = FirebaseDatabase.getInstance().getReference().child("Post").child("Comment");
