@@ -18,9 +18,13 @@ import android.widget.Toast;
 
 import com.app.hopet.Models.Animal;
 import com.app.hopet.Models.Comment;
+import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.CommentListView;
 import com.app.hopet.Utilities.DateTime;
+import com.app.hopet.Utilities.UserManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +46,7 @@ public class PostActivity extends AppCompatActivity {
     private CommentListView commentListView;
     private RecyclerView recyclerView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,8 @@ public class PostActivity extends AppCompatActivity {
         initData();
         comment = new ArrayList<>();
         initComment();
+
+
     }
 
     private void initIntent() {
@@ -152,7 +159,7 @@ public class PostActivity extends AppCompatActivity {
             case R.id.sentButton:
                 if (!commentBox.getText().toString().equals("")) {
                     String firebaseCommentKey = databaseReference.push().getKey();
-                    Comment comment = new Comment(firebaseKey, "beer", commentBox.getText().toString(), DateTime.getDate());
+                    Comment comment = new Comment(UserManager.getUser(),firebaseKey, commentBox.getText().toString(), DateTime.getDate());
                     commentBox.setText("");
                     database = FirebaseDatabase.getInstance();
                     database.getReference().child("Post").child("Comment").child(firebaseCommentKey).setValue(comment);

@@ -55,7 +55,6 @@ public class CreatePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_post);
 
 
-
         initWidgets();
         initIntent();
         initAnimalTypeSpinner();

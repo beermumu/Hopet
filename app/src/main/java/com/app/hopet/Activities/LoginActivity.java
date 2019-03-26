@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("user_photos","email","public_profile"));
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
 
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -49,13 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("cao","complete");
                 handleFacebookAccessToken(loginResult.getAccessToken());
 
-                FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("Login",currentUser.getUid());
-                Log.i("bobobo",currentUser.getEmail());
-                Log.i("bobobo",currentUser.getPhotoUrl()+"");
-                Log.i("bobobo",currentUser.getDisplayName());
-                Log.i("bobobo",currentUser.getUid());
+
                 startActivity(intent);
                 finish();
             }
@@ -82,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-//        LoginManager.getInstance().logOut();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
@@ -105,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("cao", "signInWithCredential:success");
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("cao", "signInWithCredential:failure", task.getException());

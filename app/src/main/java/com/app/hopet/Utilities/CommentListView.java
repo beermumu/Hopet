@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.hopet.Models.Comment;
 import com.app.hopet.R;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -37,8 +39,9 @@ public class CommentListView extends RecyclerView.Adapter<CommentListView.ViewHo
         Comment comment = LCommment.get(i);
         Log.i("kakak","Ka: "+viewHolder.commentDataText);
         viewHolder.commentDataText.setText(comment.getText());
-        viewHolder.commentNameText.setText(comment.getUser());
+        viewHolder.commentNameText.setText(comment.getUser().getName());
         viewHolder.commentDateTimeText.setText(comment.getTime());
+        Glide.with(viewHolder.itemView.getContext()).load(comment.getUser().getPhoto()).into(viewHolder.commentPic);
     }
 
     @Override
@@ -48,15 +51,15 @@ public class CommentListView extends RecyclerView.Adapter<CommentListView.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView commentNameText;
-        public TextView commentDataText;
-        public TextView commentDateTimeText;
+        public TextView commentNameText,commentDataText,commentDateTimeText;
+        public ImageView commentPic;
 
         public ViewHolder(View itemView) {
             super(itemView);
             commentDataText = itemView.findViewById(R.id.commentDataText);
             commentDateTimeText = itemView.findViewById(R.id.commentDateTImeText);
             commentNameText = itemView.findViewById(R.id.commentNameText);
+            commentPic = itemView.findViewById(R.id.commentPicture);
             Log.i("kakak", "Adding Listener");
         }
     }

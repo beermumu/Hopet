@@ -1,7 +1,7 @@
 package com.app.hopet.Models;
 
 public class Comment {
-    private String user;
+    private User user;
     private String text;
     private String key;
     private String time;
@@ -9,12 +9,20 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String key , String user, String text, String time) {
-        this.key = key;
+    public Comment(User user ,String key, String text, String time) {
         this.user = user;
+        this.key = key;
         this.text = text;
         this.time = time;
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTime() {
@@ -23,16 +31,6 @@ public class Comment {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public String getText() {

@@ -11,9 +11,17 @@ import com.app.hopet.Fragments.NewsFeedBottomNavBarFragment;
 import com.app.hopet.Fragments.PostBottomNavBarFragment;
 import com.app.hopet.Fragments.SearchBottomNavBarFragment;
 import com.app.hopet.Fragments.SettingsBottomNavBarFragment;
+import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.BottomNavigationViewHelper;
+import com.app.hopet.Utilities.UserManager;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -22,12 +30,35 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private SearchBottomNavBarFragment searchBottomNavBarFragment;
     private SettingsBottomNavBarFragment settingsBottomNavBarFragment;
 
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth mAuth;
+    private String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //to Main
-
         initBottomNavigationView();
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "picture.type(large)");
+        GraphRequest request = GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            url = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                            new UserManager(new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),url));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        request.setParameters(parameters);
+        request.executeAsync();
 
     }
 

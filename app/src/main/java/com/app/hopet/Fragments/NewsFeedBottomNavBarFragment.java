@@ -41,10 +41,6 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
     private ArrayList<Animal> animals;
     private ArrayList<String> key;
 
-    private FirebaseUser firebaseUser;
-    private FirebaseAuth mAuth;
-    private String url;
-
     public NewsFeedBottomNavBarFragment() {
         // Required empty public constructor
     }
@@ -59,27 +55,6 @@ public class NewsFeedBottomNavBarFragment extends Fragment {
         initDataFirebase();
         listView = view.findViewById(R.id.newsfeed_listview);
         listView.setAdapter(customListView);
-
-        //add user and profile pic
-        mAuth = FirebaseAuth.getInstance();
-        firebaseUser = mAuth.getCurrentUser();
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "picture.type(large)");
-        GraphRequest request = GraphRequest.newMeRequest(
-                AccessToken.getCurrentAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        try {
-                            url = object.getJSONObject("picture").getJSONObject("data").getString("url");
-                            new UserManager(new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),url));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        request.setParameters(parameters);
-        request.executeAsync();
 
         return view;
     }
