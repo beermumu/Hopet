@@ -63,7 +63,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, animal.getTopic() + "\n" + animal.getBreed() + "\n" + animal.getAge() + "\n" + animal.getDescription() + "\n" + "Contact in Hopet App");
+                intent.putExtra(Intent.EXTRA_TEXT, "Topic : " + animal.getTopic() + "\n" + "Breed : " + animal.getBreed() + " " + animal.getType() + "\n" + "Age : " + animal.getAge() + "\n" + "Description : " + animal.getDescription() + "\n" + "\n" + "Photo : " +" "+ animal.getPhotoOne() + "\n" + "\n" + "Download Hopet application to use comment function.");
                 intent.setType("text/plain");
                 getContext().startActivity(intent);
             }
@@ -74,7 +74,7 @@ public class CustomListView extends ArrayAdapter<Animal> {
 
     public class ViewHolder {
         public TextView topic, name, description, dateTime;
-        public ImageView imageView1 , profilePic;
+        public ImageView imageView1, profilePic;
 
         public ViewHolder(View convertview) {
             topic = convertview.findViewById(R.id.topicTextView);
