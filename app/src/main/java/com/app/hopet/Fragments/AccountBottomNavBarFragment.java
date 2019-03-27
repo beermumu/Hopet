@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.app.hopet.Activities.LoginActivity;
 import com.app.hopet.Models.Animal;
-import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.TopicListView;
 import com.bumptech.glide.Glide;
@@ -36,7 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SettingsBottomNavBarFragment extends Fragment {
+public class AccountBottomNavBarFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -50,20 +49,20 @@ public class SettingsBottomNavBarFragment extends Fragment {
     private String url;
 
 
-    public SettingsBottomNavBarFragment() {
+    public AccountBottomNavBarFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_nav_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_nav_account, container, false);
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
-        nameView = view.findViewById(R.id.settingShowName);
-        emailView = view.findViewById(R.id.settingShowEmail);
+        nameView = view.findViewById(R.id.accountShowName);
+        emailView = view.findViewById(R.id.accountShowEmail);
         logoutBtn = view.findViewById(R.id.logoutBtn);
-        profilePic = view.findViewById(R.id.settingShowProfilePicture);
+        profilePic = view.findViewById(R.id.accountShowProfilePicture);
         initData();
         clickButton(view);
 

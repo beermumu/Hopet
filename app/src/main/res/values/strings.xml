@@ -2,7 +2,9 @@
     <string name="app_name" translatable="false">Hopet</string>
 
     <string name="name">Name</string>
+    <string name="time">Time</string>
     <string name="breed">Breed</string>
+    <string name="share">Share</string>
     <string name="gender">Gender</string>
     <string name="age">Age</string>
     <string name="color">Color</string>
@@ -10,6 +12,7 @@
     <string name="Topic">Topic</string>
     <string name="save">Save</string>
     <string name="map_text">Map</string>
+    <string name="account">Account</string>
     <string name="location">Location</string>
     <string name="done">Done</string>
     <string name="post">Post</string>
@@ -24,6 +27,8 @@
     <string name="animal_type">Animal Type</string>
     <string name="navigator">Navigator</string>
     <string name="comment">Comment</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
     <string name="sent">Sent</string>
     <string name="filter_search_topic">Filter Search Topic</string>
     <string name="filter_search_data">Filter Search</string>

@@ -99,15 +99,16 @@ public class TopicActivity extends AppCompatActivity {
                         latitude = animal.getLatitude();
                         longitude = animal.getLongitude();
                         typeSend = animal.getTopicType();
-                        Geocoder geocoder;
-                        List<Address> addresses;
-                        geocoder = new Geocoder(TopicActivity.this, Locale.getDefault());
-
-                        try {
-                            addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                            locationTextView.setText(addresses.get(0).getAddressLine(0)+addresses.get(0).getLocality()+addresses.get(0).getAdminArea()+addresses.get(0).getCountryName()+addresses.get(0).getPostalCode()+addresses.get(0).getPostalCode());
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        if (latitude!=0 && longitude!=0){
+                            Geocoder geocoder;
+                            List<Address> addresses;
+                            geocoder = new Geocoder(TopicActivity.this, Locale.getDefault());
+                            try {
+                                addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                                locationTextView.setText(addresses.get(0).getAddressLine(0)+addresses.get(0).getLocality()+addresses.get(0).getAdminArea()+addresses.get(0).getCountryName()+addresses.get(0).getPostalCode()+addresses.get(0).getPostalCode());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
 
                         Glide.with(getApplicationContext()).load(animal.getPhotoOne()).into((ImageView) findViewById(R.id.uploadPhoto1Button));

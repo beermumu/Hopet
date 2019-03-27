@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.SettingsBottomNavBarFragment">
+    tools:context=".Fragments.AccountBottomNavBarFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,49 +18,49 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/settingShowProfilePicture"
-                android:layout_width="125dp"
-                android:layout_height="120dp"
+                android:id="@+id/accountShowProfilePicture"
+                android:layout_width="88dp"
+                android:layout_height="87dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:src="@android:drawable/sym_def_app_icon"
                 app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.956" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/settingShowName"
-                android:layout_width="221dp"
-                android:layout_height="43dp"
+                android:id="@+id/accountShowName"
+                android:layout_width="240dp"
+                android:layout_height="37dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="User"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/settingShowProfilePicture"
+                app:layout_constraintStart_toEndOf="@+id/accountShowProfilePicture"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/settingShowEmail"
-                android:layout_width="221dp"
-                android:layout_height="55dp"
+                android:id="@+id/accountShowEmail"
+                android:layout_width="240dp"
+                android:layout_height="39dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="Email"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/settingShowProfilePicture"
-                app:layout_constraintTop_toBottomOf="@+id/settingShowName"
+                app:layout_constraintStart_toEndOf="@+id/accountShowProfilePicture"
+                app:layout_constraintTop_toBottomOf="@+id/accountShowName"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button

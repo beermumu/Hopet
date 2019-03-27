@@ -363,7 +363,7 @@ public class SearchBottomNavBarFragment extends Fragment {
                 key.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Animal addAnimal = dataSnapshot1.getValue(Animal.class);
-                    if(addAnimal.getTopic().contains(searchText)){
+                    if(addAnimal.getTopic().toLowerCase().contains(searchText.toLowerCase()) || addAnimal.getType().toLowerCase().contains(searchText.toLowerCase()) || addAnimal.getBreed().toLowerCase().contains(searchText.toLowerCase())|| addAnimal.getGender().toLowerCase().equals(searchText.toLowerCase())){
 
                         if (!selectFunction.equals("None")){
                             if (selectFunction.equals("TopicType")){

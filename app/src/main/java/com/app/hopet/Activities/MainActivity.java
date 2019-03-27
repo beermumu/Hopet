@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.app.hopet.Fragments.NewsFeedBottomNavBarFragment;
 import com.app.hopet.Fragments.PostBottomNavBarFragment;
 import com.app.hopet.Fragments.SearchBottomNavBarFragment;
-import com.app.hopet.Fragments.SettingsBottomNavBarFragment;
+import com.app.hopet.Fragments.AccountBottomNavBarFragment;
 import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.BottomNavigationViewHelper;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private NewsFeedBottomNavBarFragment newsFeedBottomNavBarFragment;
     private PostBottomNavBarFragment postBottomNavBarFragment;
     private SearchBottomNavBarFragment searchBottomNavBarFragment;
-    private SettingsBottomNavBarFragment settingsBottomNavBarFragment;
+    private AccountBottomNavBarFragment accountBottomNavBarFragment;
 
     private FirebaseUser firebaseUser;
     private FirebaseAuth mAuth;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         newsFeedBottomNavBarFragment = new NewsFeedBottomNavBarFragment();
         postBottomNavBarFragment = new PostBottomNavBarFragment();
         searchBottomNavBarFragment = new SearchBottomNavBarFragment();
-        settingsBottomNavBarFragment = new SettingsBottomNavBarFragment();
+        accountBottomNavBarFragment = new AccountBottomNavBarFragment();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_main, newsFeedBottomNavBarFragment, newsFeedBottomNavBarFragment.getTag());
@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             openFragment(searchBottomNavBarFragment);
             getSupportActionBar().setTitle("Search");
         }  else if (id == R.id.navigation_settings) {
-            openFragment(settingsBottomNavBarFragment);
-            getSupportActionBar().setTitle("Settings");
+            openFragment(accountBottomNavBarFragment);
+            getSupportActionBar().setTitle("Account");
         }
         return true;
     }
