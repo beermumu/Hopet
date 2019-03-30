@@ -60,6 +60,7 @@ public class TopicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit");
         Intent intent = getIntent();
         firebaseKey = intent.getStringExtra("key");
         setContentView(R.layout.activity_create_post);

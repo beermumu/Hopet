@@ -8,13 +8,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -23,84 +22,89 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Topic"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorFont"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/showTopic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="TopicData"
-                android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/showImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_add" />
 
-                    <ImageView
-                        android:id="@+id/showImage"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:srcCompat="@drawable/ic_add" />
+                <ImageView
+                    android:id="@+id/showImage2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/showImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_add" />
 
-                    <ImageView
-                        android:id="@+id/showImage2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/showImage"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_add" />
-
-                    <ImageView
-                        android:id="@+id/showImage3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/showImage2"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_add" />
-
-                </android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/showImage3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/showImage2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_add" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -110,28 +114,31 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/animal_type"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/showAnimalType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="AnimalTypeData"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -140,27 +147,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/breed"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/showBreed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="BreedData"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -169,27 +179,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gender"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/showGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="GenderData"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -198,27 +211,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/age"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/showAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="AgeData"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -227,28 +243,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/description"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/showDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:text="DescriptionData"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -257,7 +276,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/map_text"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <Button
@@ -270,14 +289,16 @@
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -285,7 +306,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/comment"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -296,14 +317,16 @@
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="#dcdcdc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -318,6 +341,7 @@
                     android:id="@+id/sentButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
                     android:onClick="clickButton"
                     android:text="@string/sent" />
             </LinearLayout>

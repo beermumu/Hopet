@@ -4,5 +4,5 @@
     <item
         android:id="@+id/save_done"
         android:title="@string/save"
-        appcompat:showAsAction="always" />
+        appcompat:showAsAction="always"/>
 </menu>

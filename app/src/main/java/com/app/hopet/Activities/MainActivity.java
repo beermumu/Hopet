@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //to Main
+        getSupportActionBar().setTitle("News Feed");
         initBottomNavigationView();
 
         mAuth = FirebaseAuth.getInstance();

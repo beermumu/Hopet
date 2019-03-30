@@ -36,16 +36,16 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(context).inflate(R.layout.yourtopic_row, viewGroup, false);
-        return new TopicListView.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Animal animal = animals.get(i);
         viewHolder.topic.setText(animal.getTopic());
-        viewHolder.name.setText("Post By : " + animal.getUser().getName());
+        viewHolder.name.setText(animal.getUser().getName());
         viewHolder.description.setText("Description : " + animal.getDescription());
-        viewHolder.dateTime.setText("Time : " + animal.getDateTime());
+        viewHolder.dateTime.setText(animal.getDateTime());
         Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
         Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
 

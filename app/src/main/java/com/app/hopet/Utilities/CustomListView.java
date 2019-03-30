@@ -28,8 +28,8 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
     private List<String> firebaseKey;
 
     public CustomListView(Context context, List<Animal> objects, List<String> key) {
-        this.context=context;
-        this.animals=objects;
+        this.context = context;
+        this.animals = objects;
         this.firebaseKey = key;
     }
 
@@ -37,16 +37,16 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_row, viewGroup, false);
-        return new CustomListView.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Animal animal = animals.get(i);
         viewHolder.topic.setText(animal.getTopic());
-        viewHolder.name.setText("Post By : " + animal.getUser().getName());
+        viewHolder.name.setText(animal.getUser().getName());
         viewHolder.description.setText("Description : " + animal.getDescription());
-        viewHolder.dateTime.setText("Time : " + animal.getDateTime());
+        viewHolder.dateTime.setText(animal.getDateTime());
         Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
         Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
 
@@ -67,7 +67,7 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Topic : " + animal.getTopic() + "\n" + "Breed : " + animal.getBreed() + " " + animal.getType() + "\n" + "Age : " + animal.getAge() + "\n" + "Description : " + animal.getDescription() + "\n" + "\n" + "Photo : " +" "+ animal.getPhotoOne() + "\n" + "\n" + "Download Hopet application to use comment function.");
+                intent.putExtra(Intent.EXTRA_TEXT, "Topic : " + animal.getTopic() + "\n" + "Breed : " + animal.getBreed() + " " + animal.getType() + "\n" + "Age : " + animal.getAge() + "\n" + "Description : " + animal.getDescription() + "\n" + "\n" + "Photo : " + " " + animal.getPhotoOne() + "\n" + "\n" + "Download Hopet application to use comment function.");
                 intent.setType("text/plain");
                 viewHolder.itemView.getContext().startActivity(intent);
             }

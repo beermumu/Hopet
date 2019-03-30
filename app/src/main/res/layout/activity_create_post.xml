@@ -29,6 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Topic"
+                    android:textColor="@color/colorFont"
                     android:textSize="24sp" />
 
                 <EditText
@@ -75,6 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/animal_type"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <Spinner
@@ -100,6 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/breed"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <Spinner
@@ -124,6 +127,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/gender"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <Spinner
@@ -149,6 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/age"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <Spinner
@@ -174,6 +179,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/description"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <EditText
@@ -202,6 +208,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:text="@string/location"
+                            android:textColor="@color/colorFont"
                             android:textSize="24sp" />
 
                         <Button
@@ -240,6 +247,7 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/photos"
+                        android:textColor="@color/colorFont"
                         android:textSize="24sp" />
 
                     <android.support.constraint.ConstraintLayout

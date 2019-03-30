@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="7dp"
         android:background="@android:color/white"
         android:orientation="vertical">
 
@@ -18,9 +18,11 @@
             android:id="@+id/yourTopicShowView"
             android:layout_width="match_parent"
             android:layout_height="22dp"
+            android:layout_marginBottom="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/colorFont"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -37,7 +39,9 @@
                 android:id="@+id/yourTopicUserPhotoImageView"
                 android:layout_width="57dp"
                 android:layout_height="59dp"
-                android:src="@android:drawable/sym_def_app_icon" />
+                android:src="@android:drawable/sym_def_app_icon"
+                app:civ_border_color="@color/colorBackgroundLight"
+                app:civ_border_width="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,19 +52,20 @@
                     android:id="@+id/yourTopicUserNameTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:text="@string/name" />
+                    android:layout_marginTop="5dp"
+                    android:text="@string/name"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/yourTopicTimeTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
                     android:text="@string/time" />
             </LinearLayout>
 
@@ -80,11 +85,12 @@
                 android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/description" />
+                android:text="@string/description"
+                android:textColor="@color/colorFont" />
 
             <ImageView
                 android:id="@+id/yourTopicPostImageView"
-                android:layout_width="match_parent"
+                android:layout_width="287dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"

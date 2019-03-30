@@ -89,7 +89,7 @@ public class AccountBottomNavBarFragment extends Fragment {
     }
 
     private void initData() {
-        nameView.setText("User : " + firebaseUser.getDisplayName());
+        nameView.setText(firebaseUser.getDisplayName());
         emailView.setText("E-mail : " + firebaseUser.getEmail());
 
         Bundle parameters = new Bundle();

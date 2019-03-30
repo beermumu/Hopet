@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.SearchBottomNavBarFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:accessibilityHeading="false"
+            app:cardBackgroundColor="@color/colorPrimary">
+
+        </android.support.v7.widget.CardView>
 
         <SearchView
             android:id="@+id/searchView"
@@ -36,7 +48,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/filter_search_topic" />
+                    android:text="@string/filter_search_topic"
+                    android:textColor="@color/colorFont" />
 
                 <Spinner
                     android:id="@+id/searchFunctionSpinner"
@@ -59,7 +72,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/filter_search_data" />
+                    android:text="@string/filter_search_data"
+                    android:textColor="@color/colorFont" />
 
                 <Spinner
                     android:id="@+id/searchSpinner"
@@ -81,7 +95,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/breed_search" />
+                    android:text="@string/breed_search"
+                    android:textColor="@color/colorFont" />
 
                 <Spinner
                     android:id="@+id/searchBreedSpinner"
