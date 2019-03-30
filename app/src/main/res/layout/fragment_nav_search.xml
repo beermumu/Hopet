@@ -92,8 +92,8 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/search_listview"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_recycleview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"

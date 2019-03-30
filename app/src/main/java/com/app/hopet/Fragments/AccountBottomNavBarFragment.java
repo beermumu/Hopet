@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.hopet.Activities.LoginActivity;
+import com.app.hopet.Activities.PostActivity;
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.TopicListView;
@@ -39,7 +43,7 @@ public class AccountBottomNavBarFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private ListView listView;
+    private RecyclerView recyclerView;
     private TextView nameView, emailView;
     private Button logoutBtn;
     private ImageView profilePic;
@@ -69,11 +73,17 @@ public class AccountBottomNavBarFragment extends Fragment {
 
         animals = new ArrayList<>();
         key = new ArrayList<>();
-        topicListView = new TopicListView(getContext(), 0, animals, key);
+        topicListView = new TopicListView(getContext(), animals, key);
+        recyclerView = view.findViewById(R.id.yourTopicView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         database = FirebaseDatabase.getInstance();
         initDataFirebase();
-        listView = view.findViewById(R.id.yourTopicView);
-        listView.setAdapter(topicListView);
+        recyclerView.setAdapter(topicListView);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+
 
         return view;
     }

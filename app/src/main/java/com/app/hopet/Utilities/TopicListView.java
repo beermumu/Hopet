@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,49 +20,51 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class TopicListView extends ArrayAdapter<Animal> {
+public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder> {
 
+    private Context context;
+    private List<Animal> animals;
     private List<String> firebaseKey;
 
-    public TopicListView(Context context, int resource, List<Animal> objects, List<String> key) {
-        super(context, R.layout.yourtopic_row, objects);
+    public TopicListView(Context context, List<Animal> objects, List<String> key) {
+        this.context=context;
+        this.animals=objects;
         this.firebaseKey = key;
     }
 
+    @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        TopicListView.ViewHolder viewHolder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.yourtopic_row, null);
-            viewHolder = new TopicListView.ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-        final Animal animal = getItem(position);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(context).inflate(R.layout.yourtopic_row, viewGroup, false);
+        return new TopicListView.ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        final Animal animal = animals.get(i);
         viewHolder.topic.setText(animal.getTopic());
         viewHolder.name.setText("Post By : " + animal.getUser().getName());
         viewHolder.description.setText("Description : " + animal.getDescription());
         viewHolder.dateTime.setText("Time : " + animal.getDateTime());
-        Glide.with(getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
-        Glide.with(getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
 
 
-        Button editBtn = convertView.findViewById(R.id.yourTopicEditButton);
-        Button deleteBtn = convertView.findViewById(R.id.yourTopicDeleteButton);
+        Button editBtn = viewHolder.itemView.findViewById(R.id.yourTopicEditButton);
+        Button deleteBtn = viewHolder.itemView.findViewById(R.id.yourTopicDeleteButton);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), TopicActivity.class);
-                intent.putExtra("key", firebaseKey.get(position));
-                getContext().startActivity(intent);
+                Intent intent = new Intent(viewHolder.itemView.getContext(), TopicActivity.class);
+                intent.putExtra("key", firebaseKey.get(i));
+                viewHolder.itemView.getContext().startActivity(intent);
             }
         });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(viewHolder.itemView.getContext());
                 builder.setCancelable(true);
                 builder.setTitle("Confirm Delete");
                 builder.setMessage("If you delete your topic will gone always.");
@@ -71,7 +73,7 @@ public class TopicListView extends ArrayAdapter<Animal> {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 TopicActivity topicActivity = new TopicActivity();
-                                topicActivity.changeStatus(firebaseKey.get(position));
+                                topicActivity.changeStatus(firebaseKey.get(i));
                             }
                         });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -84,15 +86,20 @@ public class TopicListView extends ArrayAdapter<Animal> {
                 dialog.show();
             }
         });
-
-        return convertView;
     }
 
-    public class ViewHolder {
+    @Override
+    public int getItemCount() {
+        return animals.size();
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView topic, name, description, dateTime ;
         public ImageView imageView1 , profilePic;
 
         public ViewHolder(View convertview) {
+            super(convertview);
             topic = convertview.findViewById(R.id.yourTopicShowView);
             name = convertview.findViewById(R.id.yourTopicUserNameTextView);
             description = convertview.findViewById(R.id.yourTopicDescriptionTextView);

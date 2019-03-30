@@ -3,6 +3,9 @@ package com.app.hopet.Fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +40,7 @@ public class SearchBottomNavBarFragment extends Fragment {
     private CustomListView customListView;
     private ArrayList<Animal> animals;
     private ArrayList<String> key;
-    private ListView listView;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,11 +60,14 @@ public class SearchBottomNavBarFragment extends Fragment {
 
         animals = new ArrayList<>();
         key = new ArrayList<>();
-        customListView = new CustomListView(getContext(), 0, animals, key);
+        recyclerView = view.findViewById(R.id.search_recycleview);
+        customListView = new CustomListView(getContext(),animals, key);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         database = FirebaseDatabase.getInstance();
         initClickSearch();
-        listView = view.findViewById(R.id.search_listview);
-        listView.setAdapter(customListView);
+        recyclerView.setAdapter(customListView);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         return view;
