@@ -5,10 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="android:actionBarSize">43dp</item>
         <item name="actionBarSize">43dp</item>
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/itim_regular</item>
+        <item name="fontFamily">@font/itim_regular</item>
     </style>
+
+
 
 </resources>

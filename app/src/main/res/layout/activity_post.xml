@@ -40,7 +40,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,7 +165,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -229,7 +229,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -262,7 +262,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -283,8 +283,14 @@
                     android:id="@+id/showDirectMap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_normal_btn"
                     android:onClick="clickButton"
-                    android:text="@string/navigator" />
+                    android:text="@string/navigator"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -293,7 +299,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -321,7 +327,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:background="#dcdcdc" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -341,9 +347,14 @@
                     android:id="@+id/sentButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/ic_normal_btn"
                     android:onClick="clickButton"
-                    android:text="@string/sent" />
+                    android:text="@string/sent"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

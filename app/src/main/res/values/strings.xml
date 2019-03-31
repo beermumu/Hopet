@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Hopet</string>
 
+    <string name="app_des" >Application for help homeless pet.</string>
     <string name="name">Name</string>
     <string name="time">Time</string>
     <string name="breed">Breed</string>
