@@ -20,6 +20,7 @@ import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.TopicListView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
@@ -100,7 +101,7 @@ public class AccountBottomNavBarFragment extends Fragment {
                         try {
                             url = object.getJSONObject("picture").getJSONObject("data").getString("url");
                             Log.i("chocobo", url);
-                            Glide.with(getContext()).load(url).into(profilePic);
+                            Glide.with(getContext()).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(profilePic);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

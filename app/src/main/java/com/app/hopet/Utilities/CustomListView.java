@@ -20,6 +20,8 @@ import com.app.hopet.Activities.PostActivity;
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHolder> {
 
@@ -47,8 +49,8 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
         viewHolder.name.setText(animal.getUser().getName());
         viewHolder.description.setText(viewHolder.itemView.getContext().getString(R.string.description)+" : " + animal.getDescription());
         viewHolder.dateTime.setText(animal.getDateTime());
-        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
-        Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.imageView1);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.profilePic);
 
 
         //Comment and Share Button

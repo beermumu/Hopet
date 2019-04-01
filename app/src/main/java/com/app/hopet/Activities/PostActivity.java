@@ -20,6 +20,7 @@ import com.app.hopet.R;
 import com.app.hopet.Utilities.CommentListView;
 import com.app.hopet.Utilities.DateTime;
 import com.app.hopet.Utilities.UserManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,9 +88,9 @@ public class PostActivity extends AppCompatActivity {
                         descriptionText.setText(animal.getDescription());
                         latitude = animal.getLatitude();
                         longitude = animal.getLongitude();
-                        Glide.with(PostActivity.this).load(animal.getPhotoOne()).into((ImageView) findViewById(R.id.showImage));
-                        Glide.with(PostActivity.this).load(animal.getPhotoTwo()).into((ImageView) findViewById(R.id.showImage2));
-                        Glide.with(PostActivity.this).load(animal.getPhotoThree()).into((ImageView) findViewById(R.id.showImage3));
+                        Glide.with(PostActivity.this).load(animal.getPhotoOne()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.showImage));
+                        Glide.with(PostActivity.this).load(animal.getPhotoTwo()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.showImage2));
+                        Glide.with(PostActivity.this).load(animal.getPhotoThree()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.showImage3));
                     }
                 }
             }

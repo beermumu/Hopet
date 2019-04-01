@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.app.hopet.Models.Comment;
 import com.app.hopet.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class CommentListView extends RecyclerView.Adapter<CommentListView.ViewHo
         viewHolder.commentDataText.setText(comment.getText());
         viewHolder.commentNameText.setText(comment.getUser().getName());
         viewHolder.commentDateTimeText.setText(comment.getTime());
-        Glide.with(viewHolder.itemView.getContext()).load(comment.getUser().getPhoto()).into(viewHolder.commentPic);
+        Glide.with(viewHolder.itemView.getContext()).load(comment.getUser().getPhoto()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.commentPic);
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.app.hopet.Models.Animal;
 import com.app.hopet.Utilities.DateTime;
 import com.app.hopet.Utilities.UserManager;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -349,13 +350,13 @@ public class CreatePostActivity extends AppCompatActivity {
     public void downloadPhoto(String url, String fileName) {
         if (fileName.equals("1.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto1Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         } else if (fileName.equals("2.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto2Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         } else if (fileName.equals("3.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto3Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         }
 
     }

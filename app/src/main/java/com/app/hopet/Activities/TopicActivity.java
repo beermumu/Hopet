@@ -25,6 +25,7 @@ import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.DateTime;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -112,9 +113,9 @@ public class TopicActivity extends AppCompatActivity {
                             }
                         }
 
-                        Glide.with(getApplicationContext()).load(animal.getPhotoOne()).into((ImageView) findViewById(R.id.uploadPhoto1Button));
-                        Glide.with(getApplicationContext()).load(animal.getPhotoTwo()).into((ImageView) findViewById(R.id.uploadPhoto2Button));
-                        Glide.with(getApplicationContext()).load(animal.getPhotoThree()).into((ImageView) findViewById(R.id.uploadPhoto3Button));
+                        Glide.with(getApplicationContext()).load(animal.getPhotoOne()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.uploadPhoto1Button));
+                        Glide.with(getApplicationContext()).load(animal.getPhotoTwo()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.uploadPhoto2Button));
+                        Glide.with(getApplicationContext()).load(animal.getPhotoThree()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into((ImageView) findViewById(R.id.uploadPhoto3Button));
 
                         uploadImage1URL = animal.getPhotoOne();
                         uploadImage2URL = animal.getPhotoTwo();
@@ -402,13 +403,13 @@ public class TopicActivity extends AppCompatActivity {
     public void downloadPhoto(String url, String fileName) {
         if (fileName.equals("1.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto1Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         } else if (fileName.equals("2.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto2Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         } else if (fileName.equals("3.jpg")) {
             ImageView imageView = findViewById(R.id.uploadPhoto3Button);
-            Glide.with(this).load(url).into(imageView);
+            Glide.with(this).load(url).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(imageView);
         }
 
     }

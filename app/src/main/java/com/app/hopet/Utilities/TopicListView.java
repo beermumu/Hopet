@@ -17,6 +17,7 @@ import com.app.hopet.Activities.TopicActivity;
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -46,8 +47,10 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
         viewHolder.name.setText(animal.getUser().getName());
         viewHolder.description.setText(viewHolder.itemView.getContext().getString(R.string.description)+" : " + animal.getDescription());
         viewHolder.dateTime.setText(animal.getDateTime());
-        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
-        Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.imageView1);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoTwo()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.imageView2);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoThree()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.imageView3);
+        Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.not_found_image)).into(viewHolder.profilePic);
 
 
         Button editBtn = viewHolder.itemView.findViewById(R.id.yourTopicEditButton);
@@ -96,7 +99,7 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView topic, name, description, dateTime ;
-        public ImageView imageView1 , profilePic;
+        public ImageView imageView1 , imageView2 , imageView3 , profilePic;
 
         public ViewHolder(View convertview) {
             super(convertview);
@@ -104,6 +107,8 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
             name = convertview.findViewById(R.id.yourTopicUserNameTextView);
             description = convertview.findViewById(R.id.yourTopicDescriptionTextView);
             imageView1 = convertview.findViewById(R.id.yourTopicPostImageView);
+            imageView2 = convertview.findViewById(R.id.yourTopicPostImageView2);
+            imageView3 = convertview.findViewById(R.id.yourTopicPostImageView3);
             dateTime = convertview.findViewById(R.id.yourTopicTimeTextView);
             profilePic = convertview.findViewById(R.id.yourTopicUserPhotoImageView);
         }
