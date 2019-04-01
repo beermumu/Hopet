@@ -1,5 +1,6 @@
 package com.app.hopet.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -300,9 +302,7 @@ public class TopicActivity extends AppCompatActivity {
         uploadImage1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Insert Photo"), 2);
+                selectImage(2);
             }
         });
 
@@ -310,9 +310,7 @@ public class TopicActivity extends AppCompatActivity {
         uploadImage2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Insert Photo"), 3);
+                selectImage(3);
             }
         });
 
@@ -320,9 +318,7 @@ public class TopicActivity extends AppCompatActivity {
         uploadImage3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Insert Photo"), 4);
+                selectImage(4);
             }
         });
     }
@@ -458,5 +454,36 @@ public class TopicActivity extends AppCompatActivity {
         startActivity(intent);
         return true;
     }
+
+    private void selectImage(int rc){
+        final CharSequence[] item = {"Choose from Library" , "Delete"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(TopicActivity.this);
+        builder.setTitle("Add Photo");
+        builder.setItems(item, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if (item[which].equals("Choose from Library")){
+                    galleryIntent(rc);
+                }else if (item[which].equals("Delete")){
+                    if (rc == 2){
+                        databaseReference.child(firebaseKey).child("photoOne").setValue("");
+                    }else if (rc == 3){
+                        databaseReference.child(firebaseKey).child("photoTwo").setValue("");
+                    }else if (rc == 4){
+                        databaseReference.child(firebaseKey).child("photoThree").setValue("");
+                    }
+                }
+            }
+        });
+        builder.show();
+    }
+    private void galleryIntent(int rc){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Insert Photo"), rc);
+    }
+
 }
 
