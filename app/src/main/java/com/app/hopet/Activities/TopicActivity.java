@@ -456,17 +456,17 @@ public class TopicActivity extends AppCompatActivity {
     }
 
     private void selectImage(int rc){
-        final CharSequence[] item = {"Choose from Library" , "Delete"};
+        final CharSequence[] item = {TopicActivity.this.getString(R.string.choose_lib) , TopicActivity.this.getString(R.string.delete)};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(TopicActivity.this);
-        builder.setTitle("Add Photo");
+        builder.setTitle(TopicActivity.this.getString(R.string.edit_photo));
         builder.setItems(item, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if (item[which].equals("Choose from Library")){
+                if (item[which].equals(TopicActivity.this.getString(R.string.choose_lib))){
                     galleryIntent(rc);
-                }else if (item[which].equals("Delete")){
+                }else if (item[which].equals(TopicActivity.this.getString(R.string.delete))){
                     if (rc == 2){
                         databaseReference.child(firebaseKey).child("photoOne").setValue("");
                     }else if (rc == 3){

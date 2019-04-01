@@ -10,6 +10,8 @@
     <string name="post_created">Post Created</string>
     <string name="edit_success">Edit Success</string>
     <string name="search_here">Search Here</string>
+    <string name="edit_photo">Edit Photo</string>
+    <string name="choose_lib">Choose from Library</string>
     <string name="login_success" >Login Success</string>
     <string name="login_fail" >Login Failed</string>
     <string name="confirm_delete">Confirm Delete</string>
