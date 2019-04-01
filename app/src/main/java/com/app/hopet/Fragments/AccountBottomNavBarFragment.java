@@ -13,11 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.hopet.Activities.LoginActivity;
-import com.app.hopet.Activities.PostActivity;
 import com.app.hopet.Models.Animal;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.TopicListView;

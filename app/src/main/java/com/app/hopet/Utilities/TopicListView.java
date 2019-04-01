@@ -44,7 +44,7 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
         final Animal animal = animals.get(i);
         viewHolder.topic.setText(animal.getTopic());
         viewHolder.name.setText(animal.getUser().getName());
-        viewHolder.description.setText("Description : " + animal.getDescription());
+        viewHolder.description.setText(viewHolder.itemView.getContext().getString(R.string.description)+" : " + animal.getDescription());
         viewHolder.dateTime.setText(animal.getDateTime());
         Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
         Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
@@ -66,9 +66,9 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(viewHolder.itemView.getContext());
                 builder.setCancelable(true);
-                builder.setTitle("Confirm Delete");
-                builder.setMessage("If you delete your topic will gone always.");
-                builder.setPositiveButton("Confirm",
+                builder.setTitle(viewHolder.itemView.getContext().getString(R.string.confirm_delete));
+                builder.setMessage(viewHolder.itemView.getContext().getString(R.string.confirm_delete_des));
+                builder.setPositiveButton(viewHolder.itemView.getContext().getString(R.string.confirm),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -76,7 +76,7 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
                                 topicActivity.changeStatus(firebaseKey.get(i));
                             }
                         });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(viewHolder.itemView.getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }

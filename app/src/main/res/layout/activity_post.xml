@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Topic"
+                android:text="@string/topic"
                 android:textColor="@color/colorFont"
                 android:textSize="24sp" />
 
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="TopicData"
+                android:text="@string/topic_data"
                 android:textSize="20sp" />
 
             <View
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="AnimalTypeData"
+                    android:text="@string/animal_type_data"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="BreedData"
+                    android:text="@string/breed_data"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="GenderData"
+                    android:text="@string/gender_data"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="AgeData"
+                    android:text="@string/age_data"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -252,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="DescriptionData"
+                    android:text="@string/description_data"
                     android:textSize="20sp" />
 
             </LinearLayout>

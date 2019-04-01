@@ -51,7 +51,7 @@ public class CreatePostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Create a post");
+        getSupportActionBar().setTitle(CreatePostActivity.this.getString(R.string.create_post));
         setContentView(R.layout.activity_create_post);
 
 
@@ -376,7 +376,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 Log.i("kikapu",selectBreedSpinner);
                 Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
                 databaseReference.child("Data").child(firebaseKey).setValue(animal);
-                Toast.makeText(CreatePostActivity.this, "Post Created", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreatePostActivity.this, CreatePostActivity.this.getString(R.string.post_created), Toast.LENGTH_LONG).show();
             }
         }
         finish();
@@ -388,7 +388,3 @@ public class CreatePostActivity extends AppCompatActivity {
 
 
 }
-
-//                uri = data.getData();
-//                Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uri));
-//                imageView.setImageBitmap(bitmap);

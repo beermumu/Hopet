@@ -2,15 +2,37 @@
     <string name="app_name" translatable="false">Hopet</string>
 
     <string name="app_des" >Application for help homeless pet.</string>
+    <string name="share_inv" >Download Hopet application to use comment function.</string>
+
+    <string name="create_post" >Create a post</string>
+    <string name="news_feed" >News Feed</string>
+
+    <string name="post_created">Post Created</string>
+    <string name="edit_success">Edit Success</string>
+    <string name="search_here">Search Here</string>
+    <string name="login_success" >Login Success</string>
+    <string name="login_fail" >Login Failed</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="confirm_delete_des">If you delete your topic will gone always.</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
     <string name="name">Name</string>
     <string name="time">Time</string>
+    <string name="topic" >Topic</string>
+    <string name="topic_data" >Topic Data</string>
+    <string name="user" >User</string>
+    <string name="email" >E-mail</string>
     <string name="breed">Breed</string>
+    <string name="breed_data">Breed Data</string>
     <string name="share">Share</string>
     <string name="gender">Gender</string>
+    <string name="gender_data">Gender Data</string>
     <string name="age">Age</string>
+    <string name="age_data">Age data</string>
     <string name="color">Color</string>
     <string name="description">Description</string>
-    <string name="Topic">Topic</string>
+    <string name="description_data">Description Data</string>
     <string name="save">Save</string>
     <string name="map_text">Map</string>
     <string name="account">Account</string>
@@ -26,6 +48,7 @@
     <string name="add_location">Add Location</string>
     <string name="add_plus">+</string>
     <string name="animal_type">Animal Type</string>
+    <string name="animal_type_data">Animal Type Data</string>
     <string name="navigator">Navigator</string>
     <string name="comment">Comment</string>
     <string name="edit">Edit</string>
@@ -35,9 +58,8 @@
     <string name="filter_search_data">Filter Search</string>
     <string name="breed_search">Breed Search</string>
 
-    <string name="newsFeed">News Feed</string>
+    <string name="newsfeed">News Feed</string>
     <string name="search">Search</string>
-    <string name="settings">Settings</string>
     <string name="logout">Logout</string>
     <string name="your_topic">Your Topic</string>
 

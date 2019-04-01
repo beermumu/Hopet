@@ -45,7 +45,7 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
         Animal animal = animals.get(i);
         viewHolder.topic.setText(animal.getTopic());
         viewHolder.name.setText(animal.getUser().getName());
-        viewHolder.description.setText("Description : " + animal.getDescription());
+        viewHolder.description.setText(viewHolder.itemView.getContext().getString(R.string.description)+" : " + animal.getDescription());
         viewHolder.dateTime.setText(animal.getDateTime());
         Glide.with(viewHolder.itemView.getContext()).load(animal.getPhotoOne()).into(viewHolder.imageView1);
         Glide.with(viewHolder.itemView.getContext()).load(animal.getUser().getPhoto()).into(viewHolder.profilePic);
@@ -67,7 +67,7 @@ public class CustomListView extends RecyclerView.Adapter<CustomListView.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Topic : " + animal.getTopic() + "\n" + "Breed : " + animal.getBreed() + " " + animal.getType() + "\n" + "Age : " + animal.getAge() + "\n" + "Description : " + animal.getDescription() + "\n" + "\n" + "Photo : " + " " + animal.getPhotoOne() + "\n" + "\n" + "Download Hopet application to use comment function.");
+                intent.putExtra(Intent.EXTRA_TEXT, viewHolder.itemView.getContext().getString(R.string.topic)+" : " + animal.getTopic() + "\n" + viewHolder.itemView.getContext().getString(R.string.breed)+" : " + animal.getBreed() + " " + animal.getType() + "\n" + viewHolder.itemView.getContext().getString(R.string.age)+" : " + animal.getAge() + "\n" + viewHolder.itemView.getContext().getString(R.string.description)+" : " + animal.getDescription() + "\n" + "\n" + viewHolder.itemView.getContext().getString(R.string.photo)+" : " + " " + animal.getPhotoOne() + "\n" + "\n" + viewHolder.itemView.getContext().getString(R.string.share_inv));
                 intent.setType("text/plain");
                 viewHolder.itemView.getContext().startActivity(intent);
             }

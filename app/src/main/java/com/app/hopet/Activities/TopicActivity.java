@@ -60,7 +60,7 @@ public class TopicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Edit");
+        getSupportActionBar().setTitle(TopicActivity.this.getString(R.string.edit));
         Intent intent = getIntent();
         firebaseKey = intent.getStringExtra("key");
         setContentView(R.layout.activity_create_post);
@@ -433,7 +433,6 @@ public class TopicActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.save_done) {
             if (!topicEditText.getText().toString().equals("")) {
-//                Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
                 databaseReference.child(firebaseKey).child("age").setValue(selectAgeSpinner);
                 databaseReference.child(firebaseKey).child("breed").setValue(selectBreedSpinner);
                 databaseReference.child(firebaseKey).child("dateTime").setValue(DateTime.getDate());
@@ -449,8 +448,7 @@ public class TopicActivity extends AppCompatActivity {
                 databaseReference.child(firebaseKey).child("photoTwo").setValue(uploadImage2URL);
                 databaseReference.child(firebaseKey).child("photoThree").setValue(uploadImage3URL);
 
-
-                Toast.makeText(TopicActivity.this, "Post Edited", Toast.LENGTH_LONG).show();
+                Toast.makeText(TopicActivity.this, TopicActivity.this.getString(R.string.edit_success), Toast.LENGTH_LONG).show();
             }
         }
         finish();

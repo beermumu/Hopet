@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_news_feed"
         android:icon="@drawable/ic_newsfeed"
-        android:title="@string/newsFeed" />
+        android:title="@string/newsfeed" />
 
     <item
         android:id="@+id/navigation_add_topic"

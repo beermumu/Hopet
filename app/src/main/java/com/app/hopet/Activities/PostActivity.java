@@ -14,17 +14,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.app.hopet.Models.Animal;
 import com.app.hopet.Models.Comment;
-import com.app.hopet.Models.User;
 import com.app.hopet.R;
 import com.app.hopet.Utilities.CommentListView;
 import com.app.hopet.Utilities.DateTime;
 import com.app.hopet.Utilities.UserManager;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -116,7 +111,7 @@ public class PostActivity extends AppCompatActivity {
         },3000);
 
         recyclerView = findViewById(R.id.comment_recycle_view);
-        Log.i("kakak","POOM "+recyclerView);
+        Log.i("kakak","poom"+recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(PostActivity.this));
 
         commentReference = FirebaseDatabase.getInstance().getReference().child("Post").child("Comment");
@@ -137,8 +132,6 @@ public class PostActivity extends AppCompatActivity {
                 recyclerView.setAdapter(commentListView);
                 recyclerView.getAdapter().notifyDataSetChanged();
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-//                commentListView.notifyDataSetChanged();
-                Toast.makeText(PostActivity.this, "comment loaded...", Toast.LENGTH_SHORT).show();
             }
 
             @Override

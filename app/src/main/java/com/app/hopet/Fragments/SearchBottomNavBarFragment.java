@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -53,7 +52,7 @@ public class SearchBottomNavBarFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         searchView.setIconifiedByDefault(false);
         searchView.setSubmitButtonEnabled(true);
-        searchView.setQueryHint("Search Here");
+        searchView.setQueryHint(getContext().getString(R.string.search_here));
 
         initFunctionSpinner();
 

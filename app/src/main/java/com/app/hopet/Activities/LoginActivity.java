@@ -26,7 +26,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 
@@ -54,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(LoginActivity.this,loginResult.getAccessToken().getUserId(),Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,LoginActivity.this.getString(R.string.login_success),Toast.LENGTH_LONG).show();
                 Log.i("cao","complete");
                 handleFacebookAccessToken(loginResult.getAccessToken());
 
@@ -111,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("cao", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, LoginActivity.this.getString(R.string.login_fail),
                                     Toast.LENGTH_SHORT).show();
                         }
 

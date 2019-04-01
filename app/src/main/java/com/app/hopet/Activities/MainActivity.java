@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //to Main
-        getSupportActionBar().setTitle("News Feed");
+        getSupportActionBar().setTitle(MainActivity.this.getString(R.string.newsfeed));
         initBottomNavigationView();
 
         mAuth = FirebaseAuth.getInstance();
@@ -83,16 +83,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         int id = item.getItemId();
         if (id == R.id.navigation_news_feed) {
             openFragment(newsFeedBottomNavBarFragment);
-            getSupportActionBar().setTitle("News Feed");
+            getSupportActionBar().setTitle(MainActivity.this.getString(R.string.newsfeed));
         } else if (id == R.id.navigation_add_topic) {
             openFragment(postBottomNavBarFragment);
-            getSupportActionBar().setTitle("Post");
+            getSupportActionBar().setTitle(MainActivity.this.getString(R.string.post));
         } else if (id == R.id.navigation_search) {
             openFragment(searchBottomNavBarFragment);
-            getSupportActionBar().setTitle("Search");
+            getSupportActionBar().setTitle(MainActivity.this.getString(R.string.search));
         }  else if (id == R.id.navigation_settings) {
             openFragment(accountBottomNavBarFragment);
-            getSupportActionBar().setTitle("Account");
+            getSupportActionBar().setTitle(MainActivity.this.getString(R.string.account));
         }
         return true;
     }
