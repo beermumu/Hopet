@@ -103,4 +103,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         transaction.replace(R.id.activity_main, fragment);
         transaction.commit();
     }
+
+    public void onBackPressed() {
+        //do nothing
+    }
 }

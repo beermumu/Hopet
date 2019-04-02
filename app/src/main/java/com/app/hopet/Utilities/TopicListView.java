@@ -55,12 +55,39 @@ public class TopicListView extends RecyclerView.Adapter<TopicListView.ViewHolder
 
         Button editBtn = viewHolder.itemView.findViewById(R.id.yourTopicEditButton);
         Button deleteBtn = viewHolder.itemView.findViewById(R.id.yourTopicDeleteButton);
+        Button updateBtn = viewHolder.itemView.findViewById(R.id.yourTopicUpdateButton);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(viewHolder.itemView.getContext(), TopicActivity.class);
                 intent.putExtra("key", firebaseKey.get(i));
                 viewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(viewHolder.itemView.getContext());
+                builder.setCancelable(true);
+                builder.setTitle(viewHolder.itemView.getContext().getString(R.string.confirm_update));
+                builder.setMessage(viewHolder.itemView.getContext().getString(R.string.confirm_update_des));
+                builder.setPositiveButton(viewHolder.itemView.getContext().getString(R.string.confirm),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                TopicActivity topicActivity = new TopicActivity();
+                                topicActivity.changeUpdate(firebaseKey.get(i));
+                            }
+                        });
+                builder.setNegativeButton(viewHolder.itemView.getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

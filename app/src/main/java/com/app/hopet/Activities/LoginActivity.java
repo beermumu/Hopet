@@ -124,4 +124,8 @@ public class LoginActivity extends AppCompatActivity {
             loginButton.performClick();
         }
     }
+
+    public void onBackPressed() {
+        //do nothing
+    }
 }

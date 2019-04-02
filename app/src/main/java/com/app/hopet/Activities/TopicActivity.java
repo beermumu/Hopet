@@ -416,6 +416,12 @@ public class TopicActivity extends AppCompatActivity {
         databaseReference.child(firebaseKey).child("status").setValue(false);
     }
 
+    public void changeUpdate(String firebaseKey){
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("Post").child("Data");
+        databaseReference.child(firebaseKey).child("dateTime").setValue(DateTime.getDate());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -440,6 +446,7 @@ public class TopicActivity extends AppCompatActivity {
                 databaseReference.child(firebaseKey).child("status").setValue(true);
                 databaseReference.child(firebaseKey).child("description").setValue(descriptionEditText.getText().toString());
                 databaseReference.child(firebaseKey).child("topic").setValue("["+ typeSend + "]"+ topicEditText.getText().toString());
+                databaseReference.child(firebaseKey).child("dateTime").setValue(DateTime.getDate());
 
                 databaseReference.child(firebaseKey).child("photoOne").setValue(uploadImage1URL);
                 databaseReference.child(firebaseKey).child("photoTwo").setValue(uploadImage2URL);

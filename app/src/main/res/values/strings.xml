@@ -15,13 +15,16 @@
     <string name="login_success" >Login Success</string>
     <string name="login_fail" >Login Failed</string>
     <string name="confirm_delete">Confirm Delete</string>
+    <string name="confirm_update">Confirm Update</string>
     <string name="confirm_delete_des">If you delete your topic will gone always.</string>
+    <string name="confirm_update_des">Your data will avaliable for 3 month.</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
 
     <string name="name">Name</string>
     <string name="time">Time</string>
     <string name="topic" >Topic</string>
+    <string name="update" >Update</string>
     <string name="topic_data" >Topic Data</string>
     <string name="user" >User</string>
     <string name="email" >E-mail</string>

@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginStart="64dp"
+                    android:layout_marginStart="52dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:text="@string/edit"
@@ -164,11 +164,29 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/yourTopicUpdateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="@string/update"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/tab_indicator_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/yourTopicDeleteButton"
+                    app:layout_constraintHorizontal_bias="0.545"
+                    app:layout_constraintStart_toEndOf="@+id/yourTopicEditButton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
                     android:id="@+id/yourTopicDeleteButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="64dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:text="@string/delete"
@@ -176,8 +194,7 @@
                     android:textColor="@color/colorRed"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.363" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
 
