@@ -20,9 +20,19 @@
     <string name="confirm_update_des">Your data will avaliable for 3 month.</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="show_stat">Show Stat</string>
+    <string name="all_topic">All Topic : </string>
+    <string name="topic_ava">Topic Avaliable : </string>
+    <string name="topic_not_ava">Topic Not Avaliable : </string>
+    <string name="most_animal_type">Most Animal Type : </string>
+    <string name="most_breed">Most Breed : </string>
+    <string name="most_gender">Most Gender : </string>
+    <string name="most_age">Most Age : </string>
+    <string name="most_topic_type">Most Topic Type : </string>
 
     <string name="name">Name</string>
     <string name="time">Time</string>
+    <string name="stat">Stat</string>
     <string name="topic" >Topic</string>
     <string name="update" >Update</string>
     <string name="topic_data" >Topic Data</string>
