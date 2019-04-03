@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.PostBottomNavBarFragment"
     android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/takeButton"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="90dp"
-        android:accessibilityHeading="false"
-        android:background="@drawable/ic_post_btn"
-        android:drawableLeft="@drawable/dog_training"
-        android:text="@string/take"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+            <Button
+                android:id="@+id/takeButton"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="90dp"
+                android:accessibilityHeading="false"
+                android:background="@drawable/ic_post_btn"
+                android:drawableLeft="@drawable/dog_training"
+                android:text="@string/take"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="50sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/giveButton"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="70dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/ic_post_btn"
-        android:drawableRight="@drawable/adoption"
-        android:text="@string/give"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
-</LinearLayout>
+            <Button
+                android:id="@+id/giveButton"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="70dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/ic_post_btn"
+                android:drawableRight="@drawable/adoption"
+                android:text="@string/give"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
