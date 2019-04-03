@@ -378,6 +378,8 @@ public class CreatePostActivity extends AppCompatActivity {
                 Animal animal = new Animal(UserManager.getUser(), true, "["+ typeSend + "]"+ topicEditText.getText().toString(),selectAnimalTypeSpinner, typeSend ,selectBreedSpinner, selectGenderSpinner, selectAgeSpinner, descriptionEditText.getText().toString(), DateTime.getDate() ,latitude, longitude, uploadImage1URL, uploadImage2URL, uploadImage3URL);
                 databaseReference.child("Data").child(firebaseKey).setValue(animal);
                 Toast.makeText(CreatePostActivity.this, CreatePostActivity.this.getString(R.string.post_created), Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(CreatePostActivity.this, CreatePostActivity.this.getString(R.string.post_created_error), Toast.LENGTH_LONG).show();
             }
         }
         finish();

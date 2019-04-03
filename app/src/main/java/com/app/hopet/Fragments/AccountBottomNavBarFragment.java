@@ -19,7 +19,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.hopet.Activities.CreatePostActivity;
 import com.app.hopet.Activities.LoginActivity;
 import com.app.hopet.Activities.TopicActivity;
 import com.app.hopet.Models.Animal;
@@ -122,6 +124,7 @@ public class AccountBottomNavBarFragment extends Fragment {
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                Toast.makeText(getContext(), getContext().getString(R.string.logout_success), Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -557,7 +560,7 @@ public class AccountBottomNavBarFragment extends Fragment {
                     builder.setCancelable(true);
                     builder.setTitle(getContext().getString(R.string.show_stat));
                     builder.setMessage(getContext().getString(R.string.all_topic) + count[0] + "\n" + getContext().getString(R.string.topic_ava) + count[1] + "\n" + getContext().getString(R.string.topic_not_ava) + count[11] + "\n" + getContext().getString(R.string.most_animal_type) + mostType + "\n" + getContext().getString(R.string.most_breed) + mostBreed + "\n" + getContext().getString(R.string.most_gender) + mostGender + "\n" + getContext().getString(R.string.most_age) + mostAge + "\n" + getContext().getString(R.string.most_topic_type) + mostTopicType);
-                    builder.setNegativeButton(getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(getContext().getString(R.string.close), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }
