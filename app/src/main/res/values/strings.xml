@@ -1,44 +1,44 @@
 <resources>
     <string name="app_name" translatable="false">Hopet</string>
 
-    <string name="app_des">Application for help homeless pet.</string>
-    <string name="share_inv">Download Hopet application to use comment function.</string>
+    <string name="app_des">Application for helping homeless animals.</string>
+    <string name="share_inv">To download Hopet application to join community features.</string>
 
     <string name="create_post">Create a post</string>
     <string name="news_feed">News Feed</string>
 
-    <string name="post_created">Post Created</string>
-    <string name="post_created_error">Post Create Error</string>
-    <string name="edit_success">Edit Success</string>
-    <string name="search_here">Search Here</string>
-    <string name="edit_photo">Edit Photo</string>
-    <string name="choose_lib">Choose from Library</string>
-    <string name="login_success">Login Success</string>
-    <string name="logout_success">Logout Success</string>
-    <string name="login_fail">Login Failed</string>
-    <string name="confirm_delete">Confirm Delete</string>
-    <string name="confirm_update">Confirm Update</string>
-    <string name="confirm_delete_des">If you delete your topic will gone always.</string>
-    <string name="confirm_update_des">Your data will avaliable for 3 month.</string>
+    <string name="post_created">Post created</string>
+    <string name="post_created_error">Post create error</string>
+    <string name="edit_success">Edited</string>
+    <string name="search_here">Search here</string>
+    <string name="edit_photo">Edit photo</string>
+    <string name="choose_lib">Choose from library</string>
+    <string name="login_success">Login success</string>
+    <string name="logout_success">Logout success</string>
+    <string name="login_fail">Login failed</string>
+    <string name="confirm_delete">Confirm delete</string>
+    <string name="confirm_update">Confirm update</string>
+    <string name="confirm_delete_des">If you confirm, your post will be deleted.</string>
+    <string name="confirm_update_des">Your data will be avaliable for 3 months.</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
-    <string name="show_stat">Show Stat</string>
+    <string name="show_stat">Show Statistics</string>
     <string name="all_topic">All Topic : </string>
     <string name="topic_ava">Topic Avaliable : </string>
     <string name="topic_not_ava">Topic Not Avaliable : </string>
-    <string name="most_animal_type">Most Animal Type : </string>
-    <string name="most_breed">Most Breed : </string>
-    <string name="most_gender">Most Gender : </string>
-    <string name="most_age">Most Age : </string>
-    <string name="most_topic_type">Most Topic Type : </string>
+    <string name="most_animal_type">"Most animal type : "</string>
+    <string name="most_breed">"Most animal breed : "</string>
+    <string name="most_gender">"Most animal gender : "</string>
+    <string name="most_age">"Most animal age : "</string>
+    <string name="most_topic_type">"Most topic type : "</string>
 
     <string name="name">Name</string>
     <string name="time">Time</string>
     <string name="stat">Stat</string>
     <string name="topic">Topic</string>
     <string name="update">Update</string>
-    <string name="topic_data">Topic Data</string>
+    <string name="topic_data">Topic data</string>
     <string name="user">User</string>
     <string name="email">E-mail</string>
     <string name="breed">Breed</string>
@@ -229,10 +229,7 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment1">Hello blank fragment1</string>
-    <string name="hello_blank_fragment2">Hello blank fragment2</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
 </resources>
