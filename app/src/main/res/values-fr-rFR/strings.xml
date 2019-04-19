@@ -77,4 +77,5 @@
     <string name="logout">Déconnexion</string>
     <string name="your_topic">Votre sujet</string>
     <string name="title_activity_maps">Carte</string>
+    <string name="share_to">Partager à...</string>
 </resources>

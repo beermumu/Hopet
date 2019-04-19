@@ -77,4 +77,5 @@
     <string name="logout">登出</string>
     <string name="your_topic">你的主题</string>
     <string name="title_activity_maps">地图</string>
+    <string name="share_to">分享給...</string>
 </resources>

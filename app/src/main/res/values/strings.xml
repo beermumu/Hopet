@@ -75,6 +75,7 @@
     <string name="filter_search_topic">Filter Search Topic</string>
     <string name="filter_search_data">Filter Search</string>
     <string name="breed_search">Breed Search</string>
+    <string name="share_to">Share To...</string>
 
     <string name="newsfeed">News Feed</string>
     <string name="search">Search</string>

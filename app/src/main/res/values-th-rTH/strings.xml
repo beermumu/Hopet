@@ -77,4 +77,5 @@
     <string name="logout">ออกจากระบบ</string>
     <string name="your_topic">กระทู้ของคุณ</string>
     <string name="title_activity_maps">แผนที่</string>
+    <string name="share_to">แชร์ไปที่...</string>
 </resources>
